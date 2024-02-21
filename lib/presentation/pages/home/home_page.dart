@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
             decoration:
                 BoxDecoration(border: Border.all(color: AppColors.black)),
             width: 200,
-            child: SingleChildScrollView(child: HomeMenu()),
+            child: const SingleChildScrollView(child: HomeMenu()),
           ),
            Expanded(
               child: SingleChildScrollView(

@@ -2,6 +2,7 @@
 import 'package:goals_web/presentation/widgets/search_text_widget/search_text_widget.dart';
 
 import '../../../_imports.dart';
+import '../pagenation_control_widget/pagenation_control_widget.dart';
 import 'category_view_item.dart';
 
 class CategoryViewWidget extends StatelessWidget {
@@ -74,7 +75,8 @@ class CategoryViewWidget extends StatelessWidget {
               onTap: (){},
               title: "Algebraaik sonlar ustida amallar",
               downloads: '2'),
-
+          Divider(),
+          PagenationControlWidget()
 
 
         ],
