@@ -1,4 +1,5 @@
 import 'package:goals_web/_imports.dart';
+import 'package:goals_web/presentation/pages/home/widgets/signup_button.dart';
 import '../../widgets/category_menu_widget/category_menu_widget.dart';
 import '../../widgets/category_view_widget/category_view_widget.dart';
 import '../../widgets/home_menu_widget/home_menu_widget.dart';
@@ -9,12 +10,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: AppColors.white.withOpacity(0.2),
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.menu),
+          icon: const Icon(Icons.menu),
         ),
+        actions: [
+          SignUpButton()
+        ],
       ),
+
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,23 +30,24 @@ class HomePage extends StatelessWidget {
             width: 200,
             child: const SingleChildScrollView(child: HomeMenu()),
           ),
-           Expanded(
+          Expanded(
               child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 CategoryMenuWidget(),
-    LayoutBuilder(
-    builder: (context, constraints) {
-    if (constraints.maxWidth > 800) {
-    // Wide screen layout
-    return const SizedBox(width: 800,child: CategoryViewWidget(),);
-    } else {
-    // Regular screen layout
-    return const CategoryViewWidget();
-    }}),
-
-
+                LayoutBuilder(builder: (context, constraints) {
+                  if (constraints.maxWidth > 800) {
+                    // Wide screen layout
+                    return const SizedBox(
+                      width: 800,
+                      child: CategoryViewWidget(),
+                    );
+                  } else {
+                    // Regular screen layout
+                    return const CategoryViewWidget();
+                  }
+                }),
               ],
             ),
           )),

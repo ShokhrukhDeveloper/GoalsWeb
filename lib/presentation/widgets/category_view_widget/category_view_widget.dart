@@ -18,7 +18,7 @@ class CategoryViewWidget extends StatelessWidget {
       ),
       child:  Column(
         children: [
-         Padding(
+         const Padding(
            padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
            child: Row(
              children: [
@@ -26,7 +26,7 @@ class CategoryViewWidget extends StatelessWidget {
              ],
            ),
          ),
-          Divider(),
+          const Divider(),
           CategoryViewItemWidget(
               onTap: (){},
               title: "Algebraaik sonlar ustida amallar",
@@ -75,7 +75,7 @@ class CategoryViewWidget extends StatelessWidget {
               onTap: (){},
               title: "Algebraaik sonlar ustida amallar",
               downloads: '2'),
-          Divider(),
+          const Divider(),
           PagenationControlWidget()
 
 

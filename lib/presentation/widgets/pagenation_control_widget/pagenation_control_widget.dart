@@ -9,23 +9,27 @@ class PagenationControlWidget extends GetView {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 50,bottom: 10),
+      margin: const EdgeInsets.only(left: 50,bottom: 10),
       height: 50,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
 
       ),
-      child: Row(
-      children: [
-      Text("Sahifalar soni $max"),
-        const SizedBox(width: 100,),
-        ControlButton(onTap: (){}, icon: Icon(Icons.arrow_back)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
-          child: Text("$current",style: AppTextStyle.homeMenuBlackTextStyle,),
-        ),
-        ControlButton(onTap: (){}, icon: Icon(Icons.arrow_forward)),
+      child: Column(
+        children: [
+          Text("Sahifalar soni: $max"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ControlButton(onTap: (){}, icon: const Icon(Icons.arrow_back)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Text("$current",style: AppTextStyle.homeMenuBlackTextStyle,),
+            ),
+            ControlButton(onTap: (){}, icon: const Icon(Icons.arrow_forward)),
 
-      ],
+          ],
+          ),
+        ],
       ),
     );
   }
