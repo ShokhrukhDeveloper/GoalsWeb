@@ -9,6 +9,10 @@ class AppTextStyle
       fontSize: 18,
       color: AppColors.white,
       fontWeight: FontWeight.w400);
+  static const TextStyle categoryTitleBlackTextStyle=TextStyle(
+      fontSize: 22,
+      color: AppColors.black,
+      fontWeight: FontWeight.bold);
   static const TextStyle homeMenuBlackTextStyle=TextStyle(
       fontSize: 18,
       color: AppColors.black,

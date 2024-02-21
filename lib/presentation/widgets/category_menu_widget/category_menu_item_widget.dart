@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:goals_web/_imports.dart';
-class CategoryMenuItem extends GetView {
-  const CategoryMenuItem(      {super.key,
+class CategoryMenuItemWidget extends GetView {
+  const CategoryMenuItemWidget(      {super.key,
     required this.isSelected,
     required this.onTap,
     required this.title});

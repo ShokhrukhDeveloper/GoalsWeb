@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goals_web/_imports.dart';
 
-class HomeMenuItem extends StatelessWidget {
-  const HomeMenuItem(
+class HomeMenuItemWidget extends StatelessWidget {
+  const HomeMenuItemWidget(
       {super.key,
       required this.isSelected,
       required this.onTap,
