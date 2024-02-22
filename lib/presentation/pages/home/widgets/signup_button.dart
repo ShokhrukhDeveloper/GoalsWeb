@@ -9,8 +9,8 @@ class SignUpButton extends GetView {
   Widget build(BuildContext context) {
     return Container(
 
-      margin: EdgeInsets.only(right: 20),
-      padding: EdgeInsets.only(right: 15),
+      margin: const EdgeInsets.only(right: 20),
+      padding: const EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color:  AppColors.black.withOpacity(0.1),
@@ -26,7 +26,7 @@ class SignUpButton extends GetView {
                 size: 36,
                 color: AppColors.black,
               )),
-          Text("Kirish",style: AppTextStyle.categoryMenuBlackTextStyle,),
+          const Text("Kirish",style: AppTextStyle.categoryMenuBlackTextStyle,),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:goals_web/_imports.dart';
 import 'package:goals_web/presentation/pages/home/widgets/signup_button.dart';
+import 'package:goals_web/presentation/widgets/document_view_widget/document_viewer_widget.dart';
 import '../../widgets/category_menu_widget/category_menu_widget.dart';
 import '../../widgets/category_view_widget/category_view_widget.dart';
 import '../../widgets/home_menu_widget/home_menu_widget.dart';
@@ -39,13 +40,13 @@ class HomePage extends StatelessWidget {
                 LayoutBuilder(builder: (context, constraints) {
                   if (constraints.maxWidth > 800) {
                     // Wide screen layout
-                    return const SizedBox(
+                    return  SizedBox(
                       width: 800,
-                      child: CategoryViewWidget(),
+                      child: DocumentViewerWidget(),
                     );
                   } else {
                     // Regular screen layout
-                    return const CategoryViewWidget();
+                    return  DocumentViewerWidget();
                   }
                 }),
               ],
