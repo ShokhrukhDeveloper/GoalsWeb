@@ -17,23 +17,25 @@ class AccountPage extends GetView {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           border: Border.all(color: AppColors.black)),
-      child: SingleChildScrollView(
-        child: Row(
-          children: [
-           Expanded(child: AccountInfoWidget()),
-            VerticalDivider(color: Colors.black,width: 10,),
-            Expanded(child: AccountEditWidget()),
+      child: Row(
+        // crossAxisAlignment: CrossAxisAlignment.baseline,
+        children: [
+         Expanded(child: AccountInfoWidget()),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: VerticalDivider(),
+          ),
+          Expanded(child: AccountEditWidget()),
 
 
-            // CustomButton(
-            //   text: 'Saqlash',
-            //   onPressed: () {},
-            // ),
-            // const SizedBox(
-            //   height: 10,
-            // ),
-          ],
-        ),
+          // CustomButton(
+          //   text: 'Saqlash',
+          //   onPressed: () {},
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+        ],
       ),
     );
   }

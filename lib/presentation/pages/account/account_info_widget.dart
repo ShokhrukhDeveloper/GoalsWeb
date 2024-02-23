@@ -12,8 +12,8 @@ class AccountInfoWidget extends GetView {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 50,),
-          Icon(Icons.person,size: 100,color: AppColors.blue,),
+        
+          const Icon(Icons.person,size: 100,color: AppColors.blue,),
 
           const Text("New User",style: AppTextStyle.homeMenuBlackTextStyle,),
           Container(

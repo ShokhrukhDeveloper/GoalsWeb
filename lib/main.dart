@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:goals_web/presentation/pages/home/home_page.dart';
+import 'package:goals_web/presentation/pages/sign_in_up/sign_in_page.dart';
 import 'package:goals_web/routes/app_pages.dart';
 import 'package:goals_web/routes/app_routes.dart';
 import 'bindings/home_binding.dart';
@@ -20,10 +21,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialBinding: HomeBindings(),
-      initialRoute: Routes.main,
-      getPages:AppPages.pages,
-      home:  HomePage(),
+      // initialBinding: HomeBindings(),
+      // initialRoute: Routes.main,
+      // getPages:AppPages.pages,
+      home: const SignInPage()// HomePage(),
     );
   }
 }

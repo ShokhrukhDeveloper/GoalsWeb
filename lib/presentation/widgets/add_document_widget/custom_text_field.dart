@@ -8,18 +8,19 @@ class CustomTextFieldWidget extends StatelessWidget {
       this.title,
       required this.hint,
       this.controller,
-      this.maxLines = 1, this.borderRadius, this.contentPadding, this.formatter});
+      this.maxLines = 1, this.borderRadius, this.contentPadding, this.formatter, this.width});
   final String? title;
   final String hint;
   final int maxLines;
   final double? borderRadius;
+  final double? width;
   final EdgeInsetsGeometry? contentPadding;
   final List<TextInputFormatter>? formatter;
   final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
+      width: width??400,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
