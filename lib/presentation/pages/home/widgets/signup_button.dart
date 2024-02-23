@@ -20,7 +20,9 @@ class SignUpButton extends GetView {
       child: Row(
         children: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(Routes.sigIn);
+              },
               icon: const Icon(
                 Icons.account_circle_outlined,
                 size: 36,

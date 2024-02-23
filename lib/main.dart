@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // initialBinding: HomeBindings(),
-      // initialRoute: Routes.main,
-      // getPages:AppPages.pages,
-      home: const SignInPage()// HomePage(),
+      initialBinding: HomeBindings(),
+      initialRoute: Routes.main,
+      getPages:AppPages.pages,
+      home:   HomePage(),
     );
   }
 }

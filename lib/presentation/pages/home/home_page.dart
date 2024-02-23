@@ -35,8 +35,8 @@ class HomePage extends GetView<HomeController> {
               width: 200,
               child: const SingleChildScrollView(child: HomeMenu()),
             ),
-            const Expanded(child: AccountPage()),
-           if(false) Expanded(
+            if(false) const Expanded(child: AccountPage()),
+            Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
