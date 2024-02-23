@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:goals_web/presentation/widgets/add_document_widget/custom_drop_down.dart';
 
 import '../../../_imports.dart';
+import 'custom_button.dart';
 import 'custom_text_field.dart';
 
 class AddDocumentWidget extends GetView {
@@ -60,20 +61,12 @@ class AddDocumentWidget extends GetView {
             SizedBox(
               height: 10,
             ),
-
-            CustomTextFieldWidget(
-              title: 'Hujjat haqida',
-              hint: '',
-            ),
-            SizedBox(
-              height: 10,
-            ),
             CustomTextFieldWidget(
               formatter: [FilteringTextInputFormatter.digitsOnly],
-              title: 'Avto screenshotlar soni',
+              title: 'Avto screenshot soni',
               hint: '5',
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             CustomTextFieldWidget(
@@ -81,9 +74,16 @@ class AddDocumentWidget extends GetView {
               title: 'Narxi',
               hint: '0',
             ),
-            SizedBox(
+            const SizedBox(
+              height: 15,
+            ),
+            CustomButton(text: 'Saqlash', onPressed: () {  },
+
+            ),
+            const SizedBox(
               height: 10,
             ),
+
           ],
         ),
       ),

@@ -6,4 +6,6 @@ class AppColors
   static const white = Color(0xFFffffff);
   static const green = Color(0xff4ade4a);
   static const red = Color(0xffcb079a);
+
+  static const blue=Color.fromRGBO(0, 87, 216, 0.9);
 }
