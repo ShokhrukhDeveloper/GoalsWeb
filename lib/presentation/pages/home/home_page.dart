@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:goals_web/_imports.dart';
 import 'package:goals_web/controllers/home/home_controller.dart';
 import 'package:goals_web/presentation/pages/home/widgets/signup_button.dart';
+import 'package:goals_web/presentation/widgets/add_document_widget/add_document_widget.dart';
 import 'package:goals_web/presentation/widgets/document_view_widget/document_viewer_widget.dart';
 import '../../widgets/category_menu_widget/category_menu_widget.dart';
 import '../../widgets/category_view_widget/category_view_widget.dart';
@@ -40,13 +41,16 @@ class HomePage extends GetView<HomeController> {
                      Expanded(
                        child: Navigator(
                             key: navigatorKey,
-                            initialRoute: "/document_viewa",
+                            initialRoute: "/add_document",
                             onGenerateRoute: (setting ) {
                               late Widget page ;
                               if(setting.name=="/document_view")
-                                {
-                                  page= DocumentViewerWidget();
-                                }
+                              {
+                                page= DocumentViewerWidget();
+                              } else if(setting.name=="/add_document")
+                              {
+                                page= AddDocumentWidget();
+                              }
                                 else{
                                   page=const CategoryViewWidget();
                                 }
