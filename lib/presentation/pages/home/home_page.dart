@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:goals_web/_imports.dart';
 import 'package:goals_web/controllers/home/home_controller.dart';
+import 'package:goals_web/presentation/pages/account/account_page.dart';
 import 'package:goals_web/presentation/pages/home/widgets/signup_button.dart';
 import 'package:goals_web/presentation/widgets/add_category_widget/add_category_widget.dart';
 import 'package:goals_web/presentation/widgets/add_document_widget/add_document_widget.dart';
@@ -34,7 +35,8 @@ class HomePage extends GetView<HomeController> {
               width: 200,
               child: const SingleChildScrollView(child: HomeMenu()),
             ),
-            Expanded(
+            const Expanded(child: AccountPage()),
+           if(false) Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

@@ -1,6 +1,4 @@
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:goals_web/presentation/widgets/add_document_widget/custom_drop_down.dart';
 import '../../../_imports.dart';
 import '../add_document_widget/custom_button.dart';
 import '../add_document_widget/custom_text_field.dart';
@@ -27,23 +25,19 @@ class AddCategoryWidget extends GetView {
                   maxLines: 2,
                   style: AppTextStyle.categoryTitleBlackTextStyle,
                 )),
-            Divider(),
-            CustomTextFieldWidget(
+            const Divider(),
+            const CustomTextFieldWidget(
               title: 'Categoriya nomi',
               hint: 'Categoriya nomi',
             ),
-
             SizedBox(
               height: 10,
             ),
-
             CustomButton(text: 'Saqlash', onPressed: () {  },
-
             ),
             const SizedBox(
               height: 10,
             ),
-
           ],
         ),
       ),
