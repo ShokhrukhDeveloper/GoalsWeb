@@ -1,6 +1,4 @@
-
 import 'package:goals_web/presentation/widgets/search_text_widget/search_text_widget.dart';
-
 import '../../../_imports.dart';
 import '../pagenation_control_widget/pagenation_control_widget.dart';
 import 'category_view_item.dart';
