@@ -21,23 +21,23 @@ class AddDocumentWidget extends GetView {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Center(
+            const Center(
                 child: Text(
               "Hujjat qo'shish",
               maxLines: 2,
               style: AppTextStyle.categoryTitleBlackTextStyle,
             )),
-            Divider(),
-            CustomTextFieldWidget(
+            const Divider(),
+            const CustomTextFieldWidget(
               title: 'Hujjat nomi',
               hint: 'Hujjat nomi',
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
 
-            CustomTextFieldWidget(
+            const CustomTextFieldWidget(
               title: 'Hujjat haqida',
               hint: '',
               borderRadius: 5,
@@ -45,7 +45,7 @@ class AddDocumentWidget extends GetView {
               contentPadding: EdgeInsets.all(10),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
 
@@ -58,7 +58,7 @@ class AddDocumentWidget extends GetView {
                 ],
                 onChanged: (e) {}),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             CustomTextFieldWidget(
