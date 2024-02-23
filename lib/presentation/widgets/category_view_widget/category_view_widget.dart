@@ -11,75 +11,77 @@ class CategoryViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      margin: EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(color: AppColors.black)
       ),
-      child:  Column(
-        children: [
-         const Padding(
-           padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-           child: Row(
-             children: [
-               Expanded(child: Center(child: Text("Matematika",maxLines:2,style: AppTextStyle.categoryTitleBlackTextStyle,))), Expanded(child: SearchTextWidget()),
-             ],
+      child:  SingleChildScrollView(
+        child: Column(
+          children: [
+           const Padding(
+             padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+             child: Row(
+               children: [
+                 Expanded(child: Center(child: Text("Matematika",maxLines:2,style: AppTextStyle.categoryTitleBlackTextStyle,))), Expanded(child: SearchTextWidget()),
+               ],
+             ),
            ),
-         ),
-          const Divider(),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          CategoryViewItemWidget(
-              onTap: (){},
-              title: "Algebraaik sonlar ustida amallar",
-              downloads: '2'),
-          const Divider(),
-          PagenationControlWidget()
-
-
-        ],
+            const Divider(),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            CategoryViewItemWidget(
+                onTap: (){},
+                title: "Algebraaik sonlar ustida amallar",
+                downloads: '2'),
+            const Divider(),
+            PagenationControlWidget()
+        
+        
+          ],
+        ),
       ),
     );
   }

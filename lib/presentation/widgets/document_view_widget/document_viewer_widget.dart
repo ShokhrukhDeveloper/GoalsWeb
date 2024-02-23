@@ -19,8 +19,7 @@ class DocumentViewerWidget extends StatelessWidget {
        ),
        child: Column(
          children: [
-           Center(child: Text("Matematika fanlar qiroli ",
-
+           const Center(child: Text("Matematika fanlar qiroli ",
              maxLines:2,style: AppTextStyle.categoryTitleBlackTextStyle,)),
             Divider(),
            Expanded(

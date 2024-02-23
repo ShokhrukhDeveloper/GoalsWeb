@@ -4,6 +4,6 @@ import 'app_routes.dart';
 class AppPages {
   static final pages = [
     GetPage(name: Routes.main,
-        page:()=>const HomePage()),
+        page:()=> HomePage()),
   ];
 }

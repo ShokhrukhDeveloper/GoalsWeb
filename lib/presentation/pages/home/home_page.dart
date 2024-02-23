@@ -1,59 +1,82 @@
+import 'package:get/get.dart';
 import 'package:goals_web/_imports.dart';
+import 'package:goals_web/controllers/home/home_controller.dart';
 import 'package:goals_web/presentation/pages/home/widgets/signup_button.dart';
 import 'package:goals_web/presentation/widgets/document_view_widget/document_viewer_widget.dart';
 import '../../widgets/category_menu_widget/category_menu_widget.dart';
 import '../../widgets/category_view_widget/category_view_widget.dart';
 import '../../widgets/home_menu_widget/home_menu_widget.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends GetView<HomeController> {
+   HomePage({super.key});
+   final navigatorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.white.withOpacity(0.2),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-        ),
-        actions: [
-          SignUpButton()
-        ],
-      ),
-
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: double.infinity,
-            decoration:
-                BoxDecoration(border: Border.all(color: AppColors.black)),
-            width: 200,
-            child: const SingleChildScrollView(child: HomeMenu()),
+    return GetBuilder<HomeController>(builder: (ctr) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.white.withOpacity(0.2),
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.menu),
           ),
-          Expanded(
-              child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                CategoryMenuWidget(),
-                LayoutBuilder(builder: (context, constraints) {
-                  if (constraints.maxWidth > 800) {
-                    // Wide screen layout
-                    return  SizedBox(
-                      width: 800,
-                      child: DocumentViewerWidget(),
-                    );
-                  } else {
-                    // Regular screen layout
-                    return  DocumentViewerWidget();
-                  }
-                }),
-              ],
+          actions: const [SignUpButton()],
+        ),
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: double.infinity,
+              decoration:
+                  BoxDecoration(border: Border.all(color: AppColors.black)),
+              width: 200,
+              child: const SingleChildScrollView(child: HomeMenu()),
             ),
-          )),
-        ],
-      ),
-    );
+            Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const CategoryMenuWidget(),
+                     Expanded(
+                       child: Navigator(
+                            key: navigatorKey,
+                            initialRoute: "/document_viewa",
+                            onGenerateRoute: (setting ) {
+                              late Widget page ;
+                              if(setting.name=="/document_view")
+                                {
+                                  page= DocumentViewerWidget();
+                                }
+                                else{
+                                  page=const CategoryViewWidget();
+                                }
+
+
+                              return MaterialPageRoute(
+                                  builder: (c) => Center(
+                                    child: LayoutBuilder(
+                                            builder: (context, constraints) {
+                                          if (constraints.maxWidth > 800) {
+                                            // Wide screen layout
+                                            return SizedBox(
+                                              width: 800,
+                                              child: page,
+                                            );
+                                          } else {
+                                            // Regular screen layout
+                                            return page;
+                                          }
+                                        }),
+                                  ));
+                            }),
+                     ),
+
+
+                  ],
+                )),
+          ],
+        ),
+      );
+    });
   }
 }

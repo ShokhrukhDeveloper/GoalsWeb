@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialBinding: HomeBindings(),
       initialRoute: Routes.main,
       getPages:AppPages.pages,
-      home: const HomePage(),
+      home:  HomePage(),
     );
   }
 }
