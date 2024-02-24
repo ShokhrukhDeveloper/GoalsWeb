@@ -5,11 +5,15 @@ class AddButton extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton.small(
-        onPressed: onPressed,
-        child: const Icon(
-          Icons.add,
-          color: AppColors.white,
-        ));
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 5),
+      child: FloatingActionButton.small(
+          onPressed: onPressed,
+          backgroundColor: AppColors.green,
+          child: const Icon(
+            Icons.add,
+            color: AppColors.white,
+          )),
+    );
   }
 }

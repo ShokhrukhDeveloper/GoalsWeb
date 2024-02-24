@@ -8,6 +8,7 @@ abstract class Routes {
   static const basket = '/basket';
   static const subjectView = '/subjectView';
   static const addCategory = '/addCategory';
+  static const addSubject = '/addSubject';
   static const addDocument = '/addDocument';
   static const documentView = '/documentView';
 

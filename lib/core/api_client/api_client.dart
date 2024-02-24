@@ -22,6 +22,8 @@ abstract class ApiClient extends ChopperService {
 
   @Get(path: "/Category")
   Future<Response> getCategoriesWithSubjects();
+  @Get(path: "/Subject/{id}/Books")
+  Future<Response> getSubjectDocuments(@Path("id") int id,@QueryMap() Map<String,int> query);
   @Post(path: "/Category")
   Future<Response> createCategory(@Body() Map<String,String> body);
   @Post(path: "/Category/{id}/Subjects")

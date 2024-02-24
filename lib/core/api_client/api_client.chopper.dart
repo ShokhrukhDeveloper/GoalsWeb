@@ -28,6 +28,22 @@ class _$ApiClient extends ApiClient {
   }
 
   @override
+  Future<Response<dynamic>> getSubjectDocuments(
+    int id,
+    Map<String, int> query,
+  ) {
+    final Uri $url = Uri.parse('/Subject/${id}/Books');
+    final Map<String, dynamic> $params = query;
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      parameters: $params,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<dynamic>> createCategory(Map<String, String> body) {
     final Uri $url = Uri.parse('/Category');
     final $body = body;

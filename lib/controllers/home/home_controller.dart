@@ -33,7 +33,24 @@ class HomeController extends BaseController {
     print(response.error);
     print(response.body);
     if (response.statusCode == 200) {
-      getCategories();
+     await getCategories();
+     navigatorKey.currentState?.pop();
+    }
+    setLoading(false);
+  }
+  Future<void> createSubjectByCategoryId({required int categoryId,required String name}) async {
+    setLoading(true);
+    var response = await apiClient.createSubject(categoryId,{
+      "name": name,
+      "image": "*"
+    });
+    print(response.statusCode);
+    print(response.error);
+    print(response.body);
+    if (response.statusCode == 200) {
+      await getCategories();
+      selectedSubjects.value=category?.categories.firstWhere((element) => element.id==selectedCategoryId.value).subjects??[];
+      navigatorKey.currentState?.pop();
     }
     setLoading(false);
   }

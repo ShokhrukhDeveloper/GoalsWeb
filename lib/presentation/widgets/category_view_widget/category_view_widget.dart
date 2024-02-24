@@ -1,9 +1,12 @@
+import 'package:get/get.dart';
+import 'package:goals_web/controllers/home/home_controller.dart';
+import 'package:goals_web/presentation/widgets/add_category_widget/add_button.dart';
 import 'package:goals_web/presentation/widgets/search_text_widget/search_text_widget.dart';
 import '../../../_imports.dart';
 import '../pagenation_control_widget/pagenation_control_widget.dart';
 import 'category_view_item.dart';
 
-class CategoryViewWidget extends StatelessWidget {
+class CategoryViewWidget extends GetView<HomeController> {
   const CategoryViewWidget({super.key});
 
   @override
@@ -17,15 +20,20 @@ class CategoryViewWidget extends StatelessWidget {
       child:  SingleChildScrollView(
         child: Column(
           children: [
-           const Padding(
-             padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+            Padding(
+             padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
              child: Row(
                children: [
-                 Expanded(child: Center(child: Text("Matematika",maxLines:2,style: AppTextStyle.categoryTitleBlackTextStyle,))), Expanded(child: SearchTextWidget()),
+                 const Expanded(child: Center(child: Text("Matematika",maxLines:2,style: AppTextStyle.categoryTitleBlackTextStyle,))),
+                 const Expanded(child: SearchTextWidget()),
+                 AddButton(onPressed: (){
+                   controller.navigatorKey.currentState?.pushNamed(Routes.addDocument,arguments: 1);
+                 })
                ],
              ),
            ),
             const Divider(),
+
             CategoryViewItemWidget(
                 onTap: (){},
                 title: "Algebraaik sonlar ustida amallar",

@@ -39,8 +39,10 @@ class _HomeMenuState extends State<HomeMenu> {
                           title: e.name,
                         ))
                     .toList(),
-                SizedBox(height: 10,),
-                AddButton(onPressed: () {  },)
+                const SizedBox(height: 10,),
+                AddButton(onPressed: () {
+                  controller.navigatorKey.currentState?.pushNamed(Routes.addCategory);
+                },)
               ],
             )),
       );
