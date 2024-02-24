@@ -28,7 +28,6 @@ class _SignInPageState extends State<SignInPage> {
           CustomButton(text: "Kirish", onPressed: (){
             singIn=true;
             setState(() {
-
             });
           },width: 160,),
           SizedBox(width: 20,)

@@ -6,4 +6,9 @@ abstract class Routes {
   static const sigIn = '/sigIn';
   static const internetConnection = '/internet_connection';
   static const basket = '/basket';
+  static const subjectView = '/subjectView';
+  static const addCategory = '/addCategory';
+  static const addDocument = '/addDocument';
+  static const documentView = '/documentView';
+
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:goals_web/presentation/pages/home/home_page.dart';
-import 'package:goals_web/presentation/pages/sign_in_up/sign_in_page.dart';
 import 'package:goals_web/routes/app_pages.dart';
 import 'package:goals_web/routes/app_routes.dart';
 import 'bindings/home_binding.dart';

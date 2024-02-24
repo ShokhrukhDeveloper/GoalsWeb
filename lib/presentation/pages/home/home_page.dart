@@ -13,9 +13,10 @@ import '../../widgets/home_menu_widget/home_menu_widget.dart';
 class HomePage extends GetView<HomeController> {
    HomePage({super.key});
    final navigatorKey = GlobalKey<NavigatorState>();
-  @override
+   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctr) {
+      ctr.navigatorKey=navigatorKey;
       return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.white.withOpacity(0.2),
@@ -44,22 +45,29 @@ class HomePage extends GetView<HomeController> {
                      Expanded(
                        child: Navigator(
                             key: navigatorKey,
-                            initialRoute: "/add_category",
+                            initialRoute: Routes.addCategory,
                             onGenerateRoute: (setting ) {
+
                               late Widget page ;
-                              if(setting.name=="/document_view")
+                              if(setting.name==Routes.addDocument)
                               {
+                                int? id = setting.arguments as int;
                                 page= DocumentViewerWidget();
-                              } else if(setting.name=="/add_document")
+                              } else if(setting.name==Routes.addDocument)
                               {
+                                int? id = setting.arguments as int;
                                 page= const AddDocumentWidget();
-                              } else if(setting.name=="/add_category")
+                              } else if(setting.name==Routes.addCategory)
                               {
-                                page= const AddCategoryWidget();
+                                page= AddCategoryWidget();
                               }
-                              else{
+                              else if(setting.name==Routes.subjectView){
+                                  int? id = setting.arguments as int;
                                   page=const CategoryViewWidget();
                                 }
+                              else{
+                                page=const SizedBox();
+                              }
 
 
                               return MaterialPageRoute(
