@@ -7,87 +7,59 @@ import '../pagenation_control_widget/pagenation_control_widget.dart';
 import 'category_view_item.dart';
 
 class CategoryViewWidget extends GetView<HomeController> {
-  const CategoryViewWidget({super.key});
-
+  const CategoryViewWidget(this.id, {super.key});
+  final int id;
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       margin: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: AppColors.black)
-      ),
-      child:  SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-             padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-             child: Row(
-               children: [
-                 const Expanded(child: Center(child: Text("Matematika",maxLines:2,style: AppTextStyle.categoryTitleBlackTextStyle,))),
-                 const Expanded(child: SearchTextWidget()),
-                 AddButton(onPressed: (){
-                   controller.navigatorKey.currentState?.pushNamed(Routes.addDocument,arguments: 1);
-                 })
-               ],
-             ),
-           ),
-            const Divider(),
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: AppColors.black)),
+      child: GetBuilder<HomeController>(
+        builder: (ctr) {
+          return controller.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SingleChildScrollView(
+                  child: Column(
 
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            CategoryViewItemWidget(
-                onTap: (){},
-                title: "Algebraaik sonlar ustida amallar",
-                downloads: '2'),
-            const Divider(),
-            PagenationControlWidget()
-        
-        
-          ],
-        ),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 10),
+                        child: Row(
+                          children: [
+                            const Expanded(
+                                child: Center(
+                                    child: Text(
+                              "Matematika",
+                              maxLines: 2,
+                              style: AppTextStyle.categoryTitleBlackTextStyle,
+                            ))),
+                            const Expanded(child: SearchTextWidget()),
+                            AddButton(onPressed: ()async {
+                              await controller.navigatorKey.currentState
+                                  ?.pushNamed(Routes.addDocument, arguments: controller.selectedSubjectId.value);
+                              ctr.getCategories();
+                            })
+                          ],
+                        ),
+                      ),
+                      const Divider(),
+                      ...?controller.documentsList?.documents.map<Widget>((e) => CategoryViewItemWidget(
+                          onTap: () {
+                            controller.navigatorKey.currentState?.pushNamed(Routes.documentView);
+                          },
+                          title: e.name,
+                          downloads: e.categoryId.toString())),
+                      const Divider(),
+                      PagenationControlWidget()
+                    ],
+                  ),
+                );
+        }
       ),
     );
   }

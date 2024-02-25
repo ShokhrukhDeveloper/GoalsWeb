@@ -8,10 +8,16 @@ class CustomTextFieldWidget extends StatelessWidget {
       this.title,
       required this.hint,
       this.controller,
-      this.maxLines = 1, this.borderRadius, this.contentPadding, this.formatter, this.width});
+      this.maxLines = 1,
+      this.borderRadius,
+      this.contentPadding,
+      this.formatter,
+      this.width,
+      this.enabled});
   final String? title;
   final String hint;
   final int maxLines;
+  final bool? enabled;
   final double? borderRadius;
   final double? width;
   final EdgeInsetsGeometry? contentPadding;
@@ -20,22 +26,23 @@ class CustomTextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width??400,
+      width: width ?? 400,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if(title!=null)Text(title!),
+          if (title != null) Text(title!),
           TextField(
             maxLines: maxLines,
+            enabled: enabled,
             controller: controller,
             inputFormatters: formatter,
             decoration: InputDecoration(
                 hintText: hint,
-                contentPadding:
-                    contentPadding??const EdgeInsets.symmetric(vertical: 0, horizontal: 18.0),
+                contentPadding: contentPadding ??
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 18.0),
                 border: OutlineInputBorder(
                   gapPadding: 0,
-                  borderRadius: BorderRadius.circular(borderRadius??30),
+                  borderRadius: BorderRadius.circular(borderRadius ?? 30),
                 )),
           ),
         ],

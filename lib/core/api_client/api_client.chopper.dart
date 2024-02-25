@@ -28,6 +28,28 @@ class _$ApiClient extends ApiClient {
   }
 
   @override
+  Future<Response<dynamic>> getLanguages() {
+    final Uri $url = Uri.parse('/Language');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<DocumentDetails>> getBookById(int id) {
+    final Uri $url = Uri.parse('/Book/${id}');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<DocumentDetails, DocumentDetails>($request);
+  }
+
+  @override
   Future<Response<dynamic>> getSubjectDocuments(
     int id,
     Map<String, int> query,

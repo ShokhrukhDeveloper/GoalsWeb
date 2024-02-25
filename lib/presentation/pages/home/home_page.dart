@@ -33,7 +33,7 @@ class HomePage extends GetView<HomeController> {
             Container(
               height: double.infinity,
               decoration:
-                  BoxDecoration(border: Border.all(color: AppColors.black)),
+              BoxDecoration(border: Border.all(color: AppColors.black)),
               width: 200,
               child: const SingleChildScrollView(child: HomeMenu()),
             ),
@@ -43,37 +43,36 @@ class HomePage extends GetView<HomeController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const CategoryMenuWidget(),
-                     Expanded(
+                     Expanded
+                       (
                        child: Navigator(
                             key: navigatorKey,
-                            initialRoute: Routes.subjectView,
+                            initialRoute: Routes.sigIn,
                             onGenerateRoute: (setting ) {
-
                               late Widget page ;
                               if(setting.name==Routes.documentView)
                               {
-                                int? id = setting.arguments as int;
-                                page= DocumentViewerWidget();
+                                // int? id = setting.arguments as int;
+                                page = DocumentViewerWidget(8);
                               } else if(setting.name==Routes.addDocument)
                               {
-                                int? id = setting.arguments as int;
-                                page= const AddDocumentWidget();
+                                int id = setting.arguments as int;
+                                page =  AddDocumentWidget(subjectId: id);
                               } else if(setting.name==Routes.addCategory)
                               {
-                                page= AddCategoryWidget();
+                                page = AddCategoryWidget();
                               }
                               else if(setting.name==Routes.addSubject){
                                   int? id = setting.arguments as int;
                                   page = AddSubjectWidget(categoryId: id);
                                 }
                               else if(setting.name==Routes.subjectView){
-                                  int? id =1;// setting.arguments as int;
-                                  page= const CategoryViewWidget();
+                                  int? id =  setting.arguments as int;
+                                  page =  CategoryViewWidget(id);
                                 }
                               else{
                                 page=const SizedBox();
                               }
-
 
                               return MaterialPageRoute(
                                   builder: (c) => Center(

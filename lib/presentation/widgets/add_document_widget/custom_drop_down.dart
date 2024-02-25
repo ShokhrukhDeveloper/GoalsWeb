@@ -1,19 +1,21 @@
+import 'package:goals_web/core/data_models/language_list.dart';
+
 import '../../../_imports.dart';
 
-class CustomDropDown extends StatefulWidget {
+class CustomDropDown<T> extends StatefulWidget {
   CustomDropDown(
       {super.key, this.controller, required this.hint, required this.options, required this.onChanged, });
   final TextEditingController? controller;
   final String hint;
-  final List<String> options;
-  final Function(String announceDetail) onChanged;
+  final List<Language> options;
+  final Function(Language announceDetail) onChanged;
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
 
 class _CustomDropDownState extends State<CustomDropDown> {
 
-  String?  selectedOption;
+  Language?  selectedOption;
   @override  Widget build(BuildContext context) {
 
     return Container(
@@ -24,19 +26,18 @@ class _CustomDropDownState extends State<CustomDropDown> {
         children: [
           Text(widget.hint),
           const SizedBox(height: 5,),
-          DropdownButton<String>(
+          DropdownButton<Language>(
             isDense: true,
             isExpanded: true,
             value:selectedOption?? widget.options.first,
-            items: widget.options.map<DropdownMenuItem<String>>((String option) {
-              return DropdownMenuItem<String>(
+            items: widget.options.map<DropdownMenuItem<Language>>((Language option) {
+              return DropdownMenuItem<Language>(
                 value: option,
-                child: Text(option),
+                child: Text(option.name),
               );
             }).toList(),
-            onChanged: (String? newValue) {
+            onChanged: (Language? newValue) {
               setState(() {
-
                 if(newValue!=null){
                   widget.onChanged(newValue);
                   selectedOption=newValue;
