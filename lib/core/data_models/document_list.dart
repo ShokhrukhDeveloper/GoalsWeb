@@ -44,7 +44,7 @@ class Documents {
         image: json['image']);
   }
   final String name;
-  final num id;
+  final int id;
   final num categoryId;
   final String image;
 

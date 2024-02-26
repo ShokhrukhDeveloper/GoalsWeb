@@ -101,7 +101,7 @@ class _AddDocumentWidgetState extends State<AddDocumentWidget> {
                       onTap: _pickFile,
                       child: CustomTextFieldWidget(
                         title: 'Faylni tanlang',
-                        hint: '${_file?.name ?? "Faylni tanlang"}',
+                        hint: _file?.name ?? "Faylni tanlang",
                         enabled: false,
                       ),
                     ),

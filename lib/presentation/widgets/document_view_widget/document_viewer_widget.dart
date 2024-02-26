@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 import 'package:goals_web/controllers/home/home_controller.dart';
+import 'package:goals_web/core/api_client/api_urls.dart';
 import 'package:goals_web/core/data_models/document_details.dart';
 import '../../../_imports.dart';
 
 class DocumentViewerWidget extends StatefulWidget {
-    DocumentViewerWidget(this.id, {super.key});
+   const DocumentViewerWidget(this.id,{super.key});
     final int id;
 
   @override
@@ -14,7 +15,7 @@ class DocumentViewerWidget extends StatefulWidget {
 class _DocumentViewerWidgetState extends State<DocumentViewerWidget> {
     DocumentDetails? details;
 
-   final List ls= List.generate(10, (index) => null);
+   final List<int?> ls= List.generate(10, (index) => null);
 
   bool isLoading=false;
 
@@ -22,7 +23,7 @@ class _DocumentViewerWidgetState extends State<DocumentViewerWidget> {
      setState(() {
        isLoading=true;
      });
-     var result = await ApiClient.getInstance.getBookById(widget.id);
+     var result = await ApiClient.getInstance.getBookDetailsById(widget.id);
      print(result.statusCode);
      print(result.body);
      if(result.statusCode!=200)
@@ -46,14 +47,14 @@ class _DocumentViewerWidgetState extends State<DocumentViewerWidget> {
      return  Container(
        height: MediaQuery.of(context).size.height,
        margin: const EdgeInsets.all(15),
-       padding: EdgeInsets.all(15),
+       padding: const EdgeInsets.all(15),
        decoration: BoxDecoration(
            borderRadius: BorderRadius.circular(15),
            border: Border.all(color: AppColors.black)
        ),
        child: Column(
          children: [
-           const Center(child: Text("Matematika fanlar qiroli ",
+            Center(child: Text("${details?.name}",
              maxLines:2,style: AppTextStyle.categoryTitleBlackTextStyle,)),
             const Divider(),
            Expanded(
@@ -65,19 +66,18 @@ class _DocumentViewerWidgetState extends State<DocumentViewerWidget> {
                  Expanded(
                  flex: 2,
                    child: ListView.builder(
-                     // controller: scrollController,
-                       itemCount: ls.length,
+                       itemCount: details?.images.length,
                        itemBuilder: (c,i)=>
                        InkWell(
                            onTap: (){
-                             var x=scrollController1.position.maxScrollExtent*(i)/(ls.length-1);
-                             scrollController1.animateTo(x, duration: const Duration(seconds: 1), curve:  Curves.easeOutCirc);
+                             var position=scrollController1.position.maxScrollExtent*(i)/( details!.images.length-1);
+                             scrollController1.animateTo(position , duration: const Duration(seconds: 1), curve:  Curves.easeOutCirc);
                            },
                          child: AspectRatio(
                              aspectRatio: 2480/3508,
                              child: Container(
-                                 margin: EdgeInsets.all(5),
-                                 child:  Image(image: NetworkImage("https://picsum.photos/480/608"),fit: BoxFit.fitWidth,))),
+                                 margin: const EdgeInsets.all(5),
+                                 child:   Image(image: NetworkImage("${ApiUrls.imageUrl}/${details?.images[i].url}"),fit: BoxFit.fitWidth,))),
                        )
                    ),
                  ),

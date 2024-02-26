@@ -52,8 +52,8 @@ class HomePage extends GetView<HomeController> {
                               late Widget page ;
                               if(setting.name==Routes.documentView)
                               {
-                                // int? id = setting.arguments as int;
-                                page = DocumentViewerWidget(8);
+                                int? id = setting.arguments as int;
+                                page = DocumentViewerWidget(id);
                               } else if(setting.name==Routes.addDocument)
                               {
                                 int id = setting.arguments as int;

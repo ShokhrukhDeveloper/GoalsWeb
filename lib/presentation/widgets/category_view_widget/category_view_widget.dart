@@ -50,7 +50,8 @@ class CategoryViewWidget extends GetView<HomeController> {
                       const Divider(),
                       ...?controller.documentsList?.documents.map<Widget>((e) => CategoryViewItemWidget(
                           onTap: () {
-                            controller.navigatorKey.currentState?.pushNamed(Routes.documentView);
+                            controller.navigatorKey.currentState?.pushNamed(Routes.documentView,arguments: e.id);
+                            // controller.apiClient.getBookDetailsById(e.id);
                           },
                           title: e.name,
                           downloads: e.categoryId.toString())),

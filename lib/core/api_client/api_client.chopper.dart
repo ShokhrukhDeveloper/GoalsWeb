@@ -39,14 +39,14 @@ class _$ApiClient extends ApiClient {
   }
 
   @override
-  Future<Response<DocumentDetails>> getBookById(int id) {
+  Future<Response<dynamic>> getBookDetailsById(int id) {
     final Uri $url = Uri.parse('/Book/${id}');
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
     );
-    return client.send<DocumentDetails, DocumentDetails>($request);
+    return client.send<dynamic, dynamic>($request);
   }
 
   @override

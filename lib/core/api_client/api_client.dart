@@ -29,7 +29,7 @@ abstract class ApiClient extends ChopperService {
   @Get(path: "/Language")
   Future<Response> getLanguages();
   @Get(path: "/Book/{id}")
-  Future<Response> getBookById(@Path("id") int id);
+  Future<Response> getBookDetailsById(@Path("id") int id);
   @Get(path: "/Subject/{id}/Books")
   Future<Response> getSubjectDocuments(@Path("id") int id, @QueryMap() Map<String, int> query);
   @Post(path: "/Category")
