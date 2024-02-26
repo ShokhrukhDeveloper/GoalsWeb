@@ -1,55 +1,55 @@
 class DocumentDetails {
   DocumentDetails({
-     required this.description,
-     required this.name,
-     required this.categoryId,
-     required this.category,
-     required this.subjectId,
-     required this.subject,
-     required this.userId,
-     required this.user,
-     required this.languageId,
-     required this.language,
-     required this.images,
-     required this.fileType,
-     required this.file,
-     required this.fileSize,
-     required this.isAccepted,
-     required this.image,
-     required this.views,
-     required this.downloads,
-     required this.id,
-     required this.createdAt,
-     required this.updatedAt,});
+    required this.description,
+    required this.name,
+    required this.categoryId,
+    required this.category,
+    required this.subjectId,
+    required this.subject,
+    required this.userId,
+    required this.user,
+    required this.languageId,
+    required this.language,
+    required this.images,
+    required this.fileType,
+    required this.file,
+    required this.fileSize,
+    required this.isAccepted,
+    required this.image,
+    required this.views,
+    required this.downloads,
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
- factory DocumentDetails.fromJson(dynamic json) {
-   List<Images> images=[];
-   var description = json['description'];
-   var name = json['name'];
-   var categoryId = json['category_id'];
-   var category = json['category'];
-   var subjectId = json['subject_id'];
-   var subject = json['subject'];
-   var userId = json['user_id'];
-   var user = json['user'];
-   var languageId = json['language_id'];
-   var language = json['language'];
-   if (json['images'] != null) {
-
-     json['images'].forEach((v) {
-       images.add(Images.fromJson(v));
-     });
-   }
-   var fileType = json['file_type'];
-   var file = json['file'];
-   var fileSize = json['file_size'];
-   var isAccepted = json['is_accepted'];
-   var image = json['image'];
-   var views = json['views'];
-   var downloads = json['downloads'];
-   var id = json['id'];
-   var createdAt = json['created_at'];
-   var updatedAt = json['updated_at'];
+  factory DocumentDetails.fromJson(dynamic json) {
+    List<Images> images = [];
+    var description = json['description'];
+    var name = json['name'];
+    var categoryId = json['category_id'];
+    var category = json['category'];
+    var subjectId = json['subject_id'];
+    var subject = json['subject'];
+    var userId = json['user_id'];
+    var user = json['user'];
+    var languageId = json['language_id'];
+    var language = json['language'];
+    if (json['images'] != null) {
+      json['images'].forEach((v) {
+        images.add(Images.fromJson(v));
+      });
+    }
+    var fileType = json['file_type'];
+    var file = json['file'];
+    var fileSize = json['file_size'];
+    var isAccepted = json['is_accepted'];
+    var image = json['image'];
+    var views = json['views'];
+    var downloads = json['downloads'];
+    var id = json['id'];
+    var createdAt = json['created_at'];
+    var updatedAt = json['updated_at'];
     return DocumentDetails(
         description: description,
         name: name,
@@ -72,7 +72,6 @@ class DocumentDetails {
         id: id,
         createdAt: createdAt,
         updatedAt: updatedAt);
-
   }
   final dynamic description;
   final String name;
@@ -95,46 +94,17 @@ class DocumentDetails {
   final num id;
   final String createdAt;
   final dynamic updatedAt;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['description'] = description;
-    map['name'] = name;
-
-    map['category_id'] = categoryId;
-    map['category'] = category;
-    map['subject_id'] = subjectId;
-    map['subject'] = subject;
-    map['user_id'] = userId;
-    map['user'] = user;
-    map['language_id'] = languageId;
-    map['language'] = language;
-    if (images != null) {
-      map['images'] = images.map((v) => v.toJson()).toList();
-    }
-    map['file_type'] = fileType;
-    map['file'] = file;
-    map['file_size'] = fileSize;
-    map['is_accepted'] = isAccepted;
-    map['image'] = image;
-    map['views'] = views;
-    map['downloads'] = downloads;
-    map['id'] = id;
-    map['created_at'] = createdAt;
-    map['updated_at'] = updatedAt;
-    return map;
-  }
-
 }
 
 class Images {
   Images({
-      required this.id,
-      required this.bookId,
-      required this.book,
-      required this.url,});
+    required this.id,
+    required this.bookId,
+    required this.book,
+    required this.url,
+  });
 
- factory Images.fromJson(dynamic json) {
+  factory Images.fromJson(dynamic json) {
     var id = json['id'];
     var bookId = json['bookId'];
     var book = json['book'];
@@ -145,14 +115,4 @@ class Images {
   final num bookId;
   final dynamic book;
   final String url;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['bookId'] = bookId;
-    map['book'] = book;
-    map['url'] = url;
-    return map;
-  }
-
 }

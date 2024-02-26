@@ -7,6 +7,7 @@ import 'package:goals_web/presentation/widgets/add_category_widget/add_category_
 import 'package:goals_web/presentation/widgets/add_document_widget/add_document_widget.dart';
 import 'package:goals_web/presentation/widgets/add_subject_widget/add_subject_widget.dart';
 import 'package:goals_web/presentation/widgets/document_view_widget/document_viewer_widget.dart';
+import 'package:goals_web/presentation/widgets/subject_view_widget/subject_view_widget.dart';
 import '../../widgets/category_menu_widget/category_menu_widget.dart';
 import '../../widgets/category_view_widget/category_view_widget.dart';
 import '../../widgets/home_menu_widget/home_menu_widget.dart';
@@ -42,7 +43,7 @@ class HomePage extends GetView<HomeController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const CategoryMenuWidget(),
+                    // const CategoryMenuWidget(),
                      Expanded
                        (
                        child: Navigator(
@@ -67,9 +68,13 @@ class HomePage extends GetView<HomeController> {
                                   page = AddSubjectWidget(categoryId: id);
                                 }
                               else if(setting.name==Routes.subjectView){
-                                  int? id =  setting.arguments as int;
-                                  page =  CategoryViewWidget(id);
+                                  // int? id =  setting.arguments as int;
+                                  page =  const SubjectViewWidget();
                                 }
+                              // else if(setting.name==Routes.subjectView){
+                              //     int? id =  setting.arguments as int;
+                              //     page =  CategoryViewWidget(id);
+                              //   }
                               else{
                                 page=const SizedBox();
                               }

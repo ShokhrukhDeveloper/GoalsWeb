@@ -34,6 +34,7 @@ class _HomeMenuState extends State<HomeMenu> {
                             controller.selectedSubjects.value = e.subjects;
                             controller.selectedSubjects;
                             controller.selectedCategoryId.value = e.id;
+                            controller.navigatorKey.currentState?.pushNamed(Routes.subjectView);
                             controller.update();
                           },
                           title: e.name,

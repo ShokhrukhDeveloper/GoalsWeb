@@ -26,7 +26,7 @@ class _DocumentViewerWidgetState extends State<DocumentViewerWidget> {
      var result = await ApiClient.getInstance.getBookDetailsById(widget.id);
      print(result.statusCode);
      print(result.body);
-     if(result.statusCode!=200)
+     if(result.statusCode==200)
      {
        details=DocumentDetails.fromJson(result.body);
      }
@@ -65,8 +65,10 @@ class _DocumentViewerWidgetState extends State<DocumentViewerWidget> {
                children: [
                  Expanded(
                  flex: 2,
-                   child: ListView.builder(
-                       itemCount: details?.images.length,
+                   child:Container(
+                       color: AppColors.black.withOpacity(0.3),
+                       child: ListView.builder(
+                       itemCount: details?.images.length??0,
                        itemBuilder: (c,i)=>
                        InkWell(
                            onTap: (){
@@ -79,22 +81,23 @@ class _DocumentViewerWidgetState extends State<DocumentViewerWidget> {
                                  margin: const EdgeInsets.all(5),
                                  child:   Image(image: NetworkImage("${ApiUrls.imageUrl}/${details?.images[i].url}"),fit: BoxFit.fitWidth,))),
                        )
-                   ),
+                   )),
                  ),
-
                  const VerticalDivider(),
-
                  Expanded(
                    flex: 7,
-                   child: ListView.builder(
-                       controller: scrollController1,
-                       itemCount: ls.length,
-                       itemBuilder: (c,i)=>
-                       AspectRatio(
-                           aspectRatio: 2480/3508,
-                           child: Container(
-                               margin: const EdgeInsets.all(5),
-                               child: const Image(image: NetworkImage("https://picsum.photos/400/608"),fit: BoxFit.fitWidth,)))
+                   child: Container(
+                     color: AppColors.black.withOpacity(0.3),
+                     child: ListView.builder(
+                         controller: scrollController1,
+                         itemCount: details?.images.length??0,
+                         itemBuilder: (c,i)=>
+                         AspectRatio(
+                             aspectRatio: 2480/3508,
+                             child: Container(
+                                 margin: const EdgeInsets.all(5),
+                                 child: Image(image: NetworkImage("${ApiUrls.imageUrl}/${details?.images[i].url}"),fit: BoxFit.fitWidth,)))
+                     ),
                    ),
                  ),
              ],
