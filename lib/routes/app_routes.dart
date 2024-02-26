@@ -7,6 +7,7 @@ abstract class Routes {
   static const internetConnection = '/internet_connection';
   static const basket = '/basket';
   static const subjectView = '/subjectView';
+  static const subjectItemView = '/subjectItemView';
   static const addCategory = '/addCategory';
   static const addSubject = '/addSubject';
   static const addDocument = '/addDocument';

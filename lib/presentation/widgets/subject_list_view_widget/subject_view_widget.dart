@@ -1,14 +1,13 @@
 import 'package:get/get.dart';
-import 'package:goals_web/controllers/home/home_controller.dart';
-import 'package:goals_web/presentation/widgets/add_category_widget/add_button.dart';
-import 'package:goals_web/presentation/widgets/search_text_widget/search_text_widget.dart';
+import 'subject_list_item_widget.dart';
 import '../../../_imports.dart';
-import '../pagenation_control_widget/pagenation_control_widget.dart';
-import 'category_view_item.dart';
+import '../../../controllers/home/home_controller.dart';
+import '../add_category_widget/add_button.dart';
+import '../search_text_widget/search_text_widget.dart';
 
-class CategoryViewWidget extends GetView<HomeController> {
-  const CategoryViewWidget(this.id, {super.key});
-  final int id;
+class SubjectListViewWidget extends GetView<HomeController> {
+  const SubjectListViewWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,14 +16,13 @@ class CategoryViewWidget extends GetView<HomeController> {
           borderRadius: BorderRadius.circular(15),
           border: Border.all(color: AppColors.black)),
       child: GetBuilder<HomeController>(
-        builder: (ctr) {
-          return controller.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : SingleChildScrollView(
-                  child: Column(
-
+          builder: (ctr) {
+            return controller.isLoading
+                ? const Center(
+              child: CircularProgressIndicator(),
+            )
+                : SingleChildScrollView(
+              child: Obx(() =>Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -34,10 +32,10 @@ class CategoryViewWidget extends GetView<HomeController> {
                             const Expanded(
                                 child: Center(
                                     child: Text(
-                              "Matematika",
-                              maxLines: 2,
-                              style: AppTextStyle.categoryTitleBlackTextStyle,
-                            ))),
+                                      "Fanlar",
+                                      maxLines: 2,
+                                      style: AppTextStyle.categoryTitleBlackTextStyle,
+                                    ))),
                             const Expanded(child: SearchTextWidget()),
                             AddButton(onPressed: ()async {
                               await controller.navigatorKey.currentState
@@ -48,19 +46,20 @@ class CategoryViewWidget extends GetView<HomeController> {
                         ),
                       ),
                       const Divider(),
-                      ...?controller.documentsList?.documents.map<Widget>((e) => CategoryViewItemWidget(
+                      ...controller.selectedSubjects.map<Widget>((e) => SubjectViewItemWidget(
                           onTap: () {
-                            controller.navigatorKey.currentState?.pushNamed(Routes.documentView,arguments: e.id);
-                            // controller.apiClient.getBookDetailsById(e.id);
+                            controller.navigatorKey.currentState?.pushNamed(Routes.subjectItemView,arguments: e.id);
+                            controller.getDocumentList(e.id);
                           },
                           title: e.name,
                           downloads: e.categoryId.toString())),
                       const Divider(),
-                      PagenationControlWidget()
+                      // PagenationControlWidget()
                     ],
-                  ),
-                );
-        }
+                  )
+              ),
+            );
+          }
       ),
     );
   }

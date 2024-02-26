@@ -7,10 +7,9 @@ import 'package:goals_web/presentation/widgets/add_category_widget/add_category_
 import 'package:goals_web/presentation/widgets/add_document_widget/add_document_widget.dart';
 import 'package:goals_web/presentation/widgets/add_subject_widget/add_subject_widget.dart';
 import 'package:goals_web/presentation/widgets/document_view_widget/document_viewer_widget.dart';
-import 'package:goals_web/presentation/widgets/subject_view_widget/subject_view_widget.dart';
-import '../../widgets/category_menu_widget/category_menu_widget.dart';
-import '../../widgets/category_view_widget/category_view_widget.dart';
+import '../../widgets/documents_list_view_widget/documents_list_view_widget.dart';
 import '../../widgets/home_menu_widget/home_menu_widget.dart';
+import '../../widgets/subject_list_view_widget/subject_view_widget.dart';
 
 class HomePage extends GetView<HomeController> {
    HomePage({super.key});
@@ -30,6 +29,7 @@ class HomePage extends GetView<HomeController> {
         ),
         body: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               height: double.infinity,
@@ -38,69 +38,62 @@ class HomePage extends GetView<HomeController> {
               width: 200,
               child: const SingleChildScrollView(child: HomeMenu()),
             ),
-            if(false) const Expanded(child: AccountPage()),
-            Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    // const CategoryMenuWidget(),
-                     Expanded
-                       (
-                       child: Navigator(
-                            key: navigatorKey,
-                            initialRoute: Routes.sigIn,
-                            onGenerateRoute: (setting ) {
-                              late Widget page ;
-                              if(setting.name==Routes.documentView)
-                              {
-                                int? id = setting.arguments as int;
-                                page = DocumentViewerWidget(id);
-                              } else if(setting.name==Routes.addDocument)
-                              {
-                                int id = setting.arguments as int;
-                                page =  AddDocumentWidget(subjectId: id);
-                              } else if(setting.name==Routes.addCategory)
-                              {
-                                page = AddCategoryWidget();
-                              }
-                              else if(setting.name==Routes.addSubject){
-                                  int? id = setting.arguments as int;
-                                  page = AddSubjectWidget(categoryId: id);
-                                }
-                              else if(setting.name==Routes.subjectView){
-                                  // int? id =  setting.arguments as int;
-                                  page =  const SubjectViewWidget();
-                                }
-                              // else if(setting.name==Routes.subjectView){
-                              //     int? id =  setting.arguments as int;
-                              //     page =  CategoryViewWidget(id);
-                              //   }
-                              else{
-                                page=const SizedBox();
-                              }
+            Expanded
+              (
+              child: Navigator(
+                   key: navigatorKey,
+                   initialRoute: Routes.sigIn,
+                   onGenerateRoute: (setting ) {
+                     late Widget page ;
+                     if(setting.name==Routes.documentView)
+                     {
+                       int? id = setting.arguments as int;
+                       page = DocumentViewerWidget(id);
+                     } else if(setting.name==Routes.addDocument)
+                     {
+                       int id = setting.arguments as int;
+                       page =  AddDocumentWidget(subjectId: id);
+                     } else if(setting.name==Routes.addCategory)
+                     {
+                       page = AddCategoryWidget();
+                     }
+                     else if(setting.name==Routes.addSubject){
+                         int? id = setting.arguments as int;
+                         page = AddSubjectWidget(categoryId: id);
+                       }
+                     else if(setting.name==Routes.subjectView){
+                         // int? id =  setting.arguments as int;
+                         page =  const SubjectListViewWidget();
+                       }
+                     else if(setting.name==Routes.subjectItemView){
+                         int? id =  setting.arguments as int;
+                         page =  DocumentsListViewWidget(id);
+                       }
+                     else{
+                       page=const SizedBox();
+                     }
 
-                              return MaterialPageRoute(
-                                  builder: (c) => Center(
-                                    child: LayoutBuilder(
-                                            builder: (context, constraints) {
-                                          if (constraints.maxWidth > 800) {
-                                            // Wide screen layout
-                                            return SizedBox(
-                                              width: 800,
-                                              child: page,
-                                            );
-                                          } else {
-                                            // Regular screen layout
-                                            return page;
-                                          }
-                                        }),
-                                  ));
-                            }),
-                     ),
-
-
-                  ],
-                )),
+                     return MaterialPageRoute(
+                         builder: (c) => Scaffold(
+                         body:Align(
+                           alignment: Alignment.topCenter,
+                           child:  LayoutBuilder(
+                                     builder: (context, constraints) {
+                                   if (constraints.maxWidth > 900) {
+                                     // Wide screen layout
+                                     return SizedBox(
+                                       width: 900,
+                                       child: page,
+                                     );
+                                   } else {
+                                     // Regular screen layout
+                                     return page;
+                                   }
+                                 }),
+                           ),
+                         ));
+                   }),
+            ),
           ],
         ),
       );
