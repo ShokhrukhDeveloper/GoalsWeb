@@ -9,6 +9,8 @@ import '../base_controller.dart';
 class HomeController extends BaseController {
   //categoriyalar
   Category? category;
+  Categories? selectedCategory;
+  Subjects? selectedSubject;
   //languages
   LanguageList? languageList;
   Language? selectedLanguage;
@@ -19,6 +21,7 @@ class HomeController extends BaseController {
   // document list
   DocumentList? documentsList;
   Future<void> getDocumentList(int id) async {
+    selectedSubjectId.value=id;
     setLoading(true);
     var response = await apiClient.getSubjectDocuments(id, {});
     print(response.statusCode);
@@ -26,7 +29,6 @@ class HomeController extends BaseController {
     print(response.body);
     if (response.statusCode == 200) {
       documentsList = DocumentList.fromJson(response.body);
-      print("parse success");
     }
     setLoading(false);
   }

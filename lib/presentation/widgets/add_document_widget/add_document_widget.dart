@@ -20,6 +20,7 @@ class AddDocumentWidget extends StatefulWidget {
 class _AddDocumentWidgetState extends State<AddDocumentWidget> {
   PlatformFile? _file;
   TextEditingController nameController = TextEditingController();
+  TextEditingController keywordController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController screenshotController = TextEditingController();
@@ -45,7 +46,23 @@ class _AddDocumentWidgetState extends State<AddDocumentWidget> {
   }
 
   Future<void> _sendData(
-      {required PlatformFile file, required Map<String, String> body}) async {
+      {required PlatformFile file,
+        required int subjectId,
+        required String name,
+        String? keyword,
+        required String description,
+         int? numberOfScreenshots=5,
+        double? price,
+        required int languageId}) async {
+    Map<String,String> body= {
+      "subject_id": "$subjectId",
+      "name": name,
+      "keyword": keyword??"",
+      "description":description,
+      "number_of_screenshots":"${numberOfScreenshots??5}",
+      "price": "${price??0.0}",
+      "language_id": "$languageId"
+    };
     setState(() {});
     try {
       var request =
@@ -59,10 +76,19 @@ class _AddDocumentWidgetState extends State<AddDocumentWidget> {
       request.files.add(http.MultipartFile('file', stream, _file!.size,
           filename: _file!.name));
       final response = await request.send();
+      debugPrint("-=-------------------------------");
       debugPrint(response.statusCode.toString());
       debugPrint(response.reasonPhrase);
+      // debugPrint(response);
+
+      debugPrint("-=-------------------------------");
       if (response.statusCode == 200) {
-      } else {}
+        Get.snackbar(
+            "Muvofaqqiyatli qo'shildi ${response.statusCode}", "Nomi: $name",colorText: AppColors.green,maxWidth: 600);
+      } else {
+        Get.snackbar(
+            "Serverga ulanishdagi xato yuz berdi Status${response.statusCode}", "${response.reasonPhrase}",colorText: AppColors.red);
+      }
       setState(() {});
     } catch (e) {}
   }
@@ -70,6 +96,8 @@ class _AddDocumentWidgetState extends State<AddDocumentWidget> {
   bool loading = false;
   @override
   void initState() {
+    print("object");
+    print(widget.subjectId);
     super.initState();
   }
 
@@ -150,6 +178,15 @@ class _AddDocumentWidgetState extends State<AddDocumentWidget> {
                       controller: priceController,
                     ),
                     const SizedBox(
+                      height: 10,
+                    ),
+                    CustomTextFieldWidget(
+                      title: 'Kalit so\'zlar',
+                      hint: 'Kalit so\'zlar',
+                      controller: keywordController,
+                    ),
+
+                    const SizedBox(
                       height: 15,
                     ),
                     CustomButton(
@@ -158,24 +195,22 @@ class _AddDocumentWidgetState extends State<AddDocumentWidget> {
                         setState(() {
                           loading = true;
                         });
-                        _sendData(file: _file!, body: {
-                          "subject_id": "${widget.subjectId}",
-                          "name": nameController.text,
-                          "description": descriptionController.text,
-                          "number_of_screenshots":
-                              screenshotController.text.isEmpty
-                                  ? '5'
-                                  : screenshotController.text,
-                          "price": priceController.text,
-                          "language_id": "${ctr.selectedLanguage?.id ?? 1}",
-                        }).onError((error, stackTrace) {
+                        _sendData(file: _file!,
+                          subjectId: widget.subjectId,
+                          price: double.parse(priceController.text.isEmpty?"0.0":priceController.text),
+                          keyword: keywordController.text,
+                          numberOfScreenshots: int.parse(priceController.text.isEmpty?'5':priceController.text),
+                          name: nameController.text,
+                          description: descriptionController.text,
+                          languageId: ctr.selectedLanguage?.id??ctr.languageList!.language.first.id,
+                        ).onError((error, stackTrace) {
                           setState(() {
                             loading = false;
                             Get.snackbar(
                                 "Xatolik yuz berdi $error", "$stackTrace");
                           });
-                        }).whenComplete(
-                            () => ctr.navigatorKey.currentState?.pop());
+                        })
+                        .whenComplete(() => ctr.navigatorKey.currentState?.pop());
                       },
                     ),
                     const SizedBox(

@@ -7,6 +7,7 @@ import 'package:goals_web/presentation/widgets/add_category_widget/add_category_
 import 'package:goals_web/presentation/widgets/add_document_widget/add_document_widget.dart';
 import 'package:goals_web/presentation/widgets/add_subject_widget/add_subject_widget.dart';
 import 'package:goals_web/presentation/widgets/document_view_widget/document_viewer_widget.dart';
+import 'package:page_transition/page_transition.dart';
 import '../../widgets/documents_list_view_widget/documents_list_view_widget.dart';
 import '../../widgets/home_menu_widget/home_menu_widget.dart';
 import '../../widgets/subject_list_view_widget/subject_view_widget.dart';
@@ -49,7 +50,8 @@ class HomePage extends GetView<HomeController> {
                      {
                        int? id = setting.arguments as int;
                        page = DocumentViewerWidget(id);
-                     } else if(setting.name==Routes.addDocument)
+                     } else
+                       if(setting.name==Routes.addDocument)
                      {
                        int id = setting.arguments as int;
                        page =  AddDocumentWidget(subjectId: id);
@@ -72,9 +74,13 @@ class HomePage extends GetView<HomeController> {
                      else{
                        page=const SizedBox();
                      }
-
-                     return MaterialPageRoute(
-                         builder: (c) => Scaffold(
+                     return PageTransition(
+                         type: PageTransitionType.topToBottom,
+                         // duration: Duration(seconds: 1),
+                         // childCurrent: CircularProgressIndicator(),
+                         alignment: Alignment.topCenter,
+                         curve: Curves.slowMiddle,
+                         child:Scaffold(
                          body:Align(
                            alignment: Alignment.topCenter,
                            child:  LayoutBuilder(
@@ -92,7 +98,7 @@ class HomePage extends GetView<HomeController> {
                                  }),
                            ),
                          ));
-                   }),
+                   })
             ),
           ],
         ),

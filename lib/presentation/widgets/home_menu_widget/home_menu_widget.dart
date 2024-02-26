@@ -23,30 +23,28 @@ class _HomeMenuState extends State<HomeMenu> {
           child: CircularProgressIndicator(),
         );
       }
-      return Container(
-        child: Obx(() => Column(
-              children: [
-                ...?controller.category?.categories
-                    .map<Widget>((e) => HomeMenuItemWidget(
-                          isSelected:
-                              controller.selectedCategoryId.value == e.id,
-                          onTap: () {
-                            controller.selectedSubjects.value = e.subjects;
-                            controller.selectedSubjects;
-                            controller.selectedCategoryId.value = e.id;
-                            controller.navigatorKey.currentState?.pushNamed(Routes.subjectView);
-                            controller.update();
-                          },
-                          title: e.name,
-                        ))
-                    .toList(),
-                const SizedBox(height: 10,),
-                AddButton(onPressed: () {
-                  controller.navigatorKey.currentState?.pushNamed(Routes.addCategory);
-                },)
-              ],
-            )),
-      );
+      return Obx(() => Column(
+            children: [
+              ...?controller.category?.categories
+                  .map<Widget>((e) => HomeMenuItemWidget(
+                        isSelected:
+                            controller.selectedCategoryId.value == e.id,
+                        onTap: () {
+                          controller.selectedSubjects.value = e.subjects;
+                          controller.selectedCategory=e;
+                          controller.selectedCategoryId.value = e.id;
+                          controller.navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.subjectView,(t)=>true);
+                          controller.update();
+                        },
+                        title: e.name,
+                      ))
+                  .toList(),
+              const SizedBox(height: 10,),
+              AddButton(onPressed: () {
+                controller.navigatorKey.currentState?.pushNamed(Routes.addCategory);
+              },)
+            ],
+          ));
     });
   }
 }

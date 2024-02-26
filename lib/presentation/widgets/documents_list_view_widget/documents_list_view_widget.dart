@@ -29,10 +29,13 @@ class DocumentsListViewWidget extends GetView<HomeController> {
                           vertical: 10, horizontal: 10),
                       child: Row(
                         children: [
-                          const Expanded(
+                          IconButton(onPressed: (){
+                            controller.navigatorKey.currentState?.pop();
+                          }, icon: const Icon(Icons.arrow_back)),
+                           Expanded(
                               child: Center(
                                   child: Text(
-                            "Matematika",
+                            controller.selectedSubject?.name??"!",
                             maxLines: 2,
                             style: AppTextStyle.categoryTitleBlackTextStyle,
                           ))),
@@ -42,7 +45,7 @@ class DocumentsListViewWidget extends GetView<HomeController> {
                                 ?.pushNamed(Routes.addDocument,
                                     arguments:
                                         controller.selectedSubjectId.value);
-                            ctr.getCategories();
+                            await ctr.getDocumentList(ctr.selectedSubject!.id);
                           })
                         ],
                       ),

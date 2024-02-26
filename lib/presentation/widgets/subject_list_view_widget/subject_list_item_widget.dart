@@ -12,13 +12,16 @@ class SubjectViewItemWidget extends GetView {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 3),
         height: 60,
         width: double.infinity,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
             border: Border.symmetric(
               horizontal: BorderSide(color: AppColors.black.withOpacity(0.5)),
-              vertical: BorderSide(color: AppColors.black.withOpacity(0.5),width: 2),
+              vertical: BorderSide(color: AppColors.black.withOpacity(0.5),
+                  width: 2),
+              
             )
         ),
         child: Row(
@@ -29,7 +32,9 @@ class SubjectViewItemWidget extends GetView {
               margin: const EdgeInsets.all(5),
               width: 50,
               height: 50,
+              
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
                   border: Border.all(color: AppColors.black.withOpacity(0.3))
               ),
               child: const Center(child: Icon(Icons.subject,size: 50,),),
@@ -53,7 +58,6 @@ class SubjectViewItemWidget extends GetView {
                 ],
               ),
             )
-
           ],
         ),
       ),

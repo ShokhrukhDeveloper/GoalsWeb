@@ -75,23 +75,23 @@ class DocumentDetails {
   }
   final dynamic description;
   final String name;
-  final num categoryId;
+  final int categoryId;
   final dynamic category;
-  final num subjectId;
+  final int subjectId;
   final dynamic subject;
-  final num userId;
+  final int? userId;
   final dynamic user;
-  final num languageId;
+  final int? languageId;
   final dynamic language;
   final List<Images> images;
   final String fileType;
   final String file;
-  final num fileSize;
+  final int fileSize;
   final bool isAccepted;
   final String image;
-  final num views;
-  final num downloads;
-  final num id;
+  final int views;
+  final int downloads;
+  final int id;
   final String createdAt;
   final dynamic updatedAt;
 }
