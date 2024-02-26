@@ -1,6 +1,7 @@
 import 'package:chopper/chopper.dart';
 import 'package:goals_web/core/api_client/api_urls.dart';
 import 'package:goals_web/core/data_models/language_list.dart';
+import 'package:goals_web/core/storage/local_storage.dart';
 
 import '../data_models/document_details.dart';
 part 'api_client.chopper.dart';
@@ -13,15 +14,14 @@ abstract class ApiClient extends ChopperService {
         baseUrl: Uri.parse(ApiUrls.baseUrl),
         services: [_$ApiClient()],
         converter: const JsonConverter(),
-        // interceptors: [
-        //       (Request request) async => request.copyWith(
-        //       headers: request.headers
-        //         ..addAll({
-        //           "Authorization":
-        //           "Bearer ${LocalSource.getInstance().accessToken}",
-        //           "X-APP-UID": "${LocalSource.getInstance().deviceInfo}",
-        //         }))
-        // ]
+        interceptors: [
+              (Request request) async => request.copyWith(
+              headers: request.headers
+                ..addAll({
+                  "Authorization":
+                  "Bearer ${LocalStorage.accessToken}",
+                }))
+        ]
       ));
 
   @Get(path: "/Category")

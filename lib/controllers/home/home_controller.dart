@@ -2,9 +2,9 @@ import 'package:chopper/chopper.dart';
 import 'package:goals_web/core/data_models/category.dart';
 import 'package:goals_web/core/data_models/document_list.dart';
 import 'package:goals_web/core/data_models/language_list.dart';
-
 import '../../_imports.dart';
 import '../base_controller.dart';
+
 
 class HomeController extends BaseController {
   //categoriyalar
@@ -93,7 +93,6 @@ class HomeController extends BaseController {
     }
     setLoading(false);
   }
-
   @override
   void onInit() {
     getCategories();
