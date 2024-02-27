@@ -116,6 +116,17 @@ class _$ApiClient extends ApiClient {
   }
 
   @override
+  Future<Response<dynamic>> getLasts(int limit) {
+    final Uri $url = Uri.parse('/Book/lastest/${limit}');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<dynamic>> createSubject(
     int id,
     Map<String, String> body,

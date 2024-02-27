@@ -39,13 +39,13 @@ class UserModel {
         updatedAt: updatedAt);
   }
 
-  String email;
+  String? email;
   int role;
   double balanse;
-  String fullName;
+  String? fullName;
   String? image;
   String? phone;
-  bool isBlocked;
+  bool? isBlocked;
   String? birthday;
   int id;
   String? createdAt;

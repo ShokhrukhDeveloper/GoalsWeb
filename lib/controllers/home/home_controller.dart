@@ -3,6 +3,7 @@ import 'package:goals_web/controllers/auth_controller.dart';
 import 'package:goals_web/core/data_models/category.dart';
 import 'package:goals_web/core/data_models/document_list.dart';
 import 'package:goals_web/core/data_models/language_list.dart';
+import 'package:goals_web/core/data_models/last_added_model.dart';
 import '../../_imports.dart';
 import '../base_controller.dart';
 
@@ -50,6 +51,19 @@ class HomeController extends BaseController {
       print("parse success");
     }
     setLoading(false.obs);
+  }
+  Future<LastAddedModel?> getLasts() async {
+    var response = await apiClient.getLasts(10);
+    await Future.delayed(Duration(seconds: 2));
+    debugPrint("--------------------------------------------------------");
+    debugPrint(response.statusCode.toString());
+    debugPrint(response.error.toString());
+    debugPrint(response.body.toString());
+    if (response.isSuccessful) {
+      printError(info: "");
+      return LastAddedModel.fromJson(response.body);
+    }
+    return null;
   }
   Future<void> getLanguages() async {
     setLoading(true.obs);
