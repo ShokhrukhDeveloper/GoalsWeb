@@ -3,6 +3,7 @@ import 'package:goals_web/controllers/home/home_controller.dart';
 import 'package:goals_web/presentation/widgets/add_category_widget/add_button.dart';
 import 'package:goals_web/presentation/widgets/search_text_widget/search_text_widget.dart';
 import '../../../_imports.dart';
+import '../../../controllers/auth_controller.dart';
 import '../pagenation_control_widget/pagenation_control_widget.dart';
 import 'document_view_item.dart';
 
@@ -29,24 +30,29 @@ class DocumentsListViewWidget extends GetView<HomeController> {
                           vertical: 10, horizontal: 10),
                       child: Row(
                         children: [
-                          IconButton(onPressed: (){
-                            controller.navigatorKey.currentState?.pop();
-                          }, icon: const Icon(Icons.arrow_back)),
-                           Expanded(
+                          IconButton(
+                              onPressed: () {
+                                controller.navigatorKey.currentState?.pop();
+                              },
+                              icon: const Icon(Icons.arrow_back)),
+                          Expanded(
                               child: Center(
                                   child: Text(
-                            controller.selectedSubject?.name??"!",
+                            controller.selectedSubject?.name ?? "!",
                             maxLines: 2,
                             style: AppTextStyle.categoryTitleBlackTextStyle,
                           ))),
                           const Expanded(child: SearchTextWidget()),
-                          AddButton(onPressed: () async {
-                            await controller.navigatorKey.currentState
-                                ?.pushNamed(Routes.addDocument,
-                                    arguments:
-                                        controller.selectedSubjectId.value);
-                            await ctr.getDocumentList(ctr.selectedSubject!.id);
-                          })
+                          Obx(() => AuthController.userModel.value?.role == 0
+                              ? AddButton(onPressed: () async {
+                                  await controller.navigatorKey.currentState
+                                      ?.pushNamed(Routes.addDocument,
+                                          arguments: controller
+                                              .selectedSubjectId.value);
+                                  await ctr
+                                      .getDocumentList(ctr.selectedSubject!.id);
+                                })
+                              : const SizedBox())
                         ],
                       ),
                     ),

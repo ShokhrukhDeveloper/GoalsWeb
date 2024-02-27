@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../../controllers/auth_controller.dart';
 import 'subject_list_item_widget.dart';
 import '../../../_imports.dart';
 import '../../../controllers/home/home_controller.dart';
@@ -36,13 +37,16 @@ class SubjectListViewWidget extends GetView<HomeController> {
                                 style: AppTextStyle.categoryTitleBlackTextStyle,
                               ))),
                               const Expanded(child: SearchTextWidget()),
-                              AddButton(onPressed: () async {
+        Obx(
+        ()=>AuthController.userModel.value?.role==0?
+        AddButton(onPressed: () async {
                                 await controller.navigatorKey.currentState
                                     ?.pushNamed(Routes.addSubject,
                                         arguments:
                                             controller.selectedCategory?.id);
 
-                              })
+                              }):
+        const SizedBox())
                             ],
                           ),
                         ),

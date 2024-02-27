@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:goals_web/_imports.dart';
+import 'package:goals_web/controllers/auth_controller.dart';
 import 'package:goals_web/controllers/home/home_controller.dart';
 
 import '../add_category_widget/add_button.dart';
@@ -43,9 +44,11 @@ class _HomeMenuState extends State<HomeMenu> {
               ))
               ,
               const SizedBox(height: 10,),
-              AddButton(onPressed: () {
-                controller.navigatorKey.currentState?.pushNamed(Routes.addCategory);
-              },)
+              Obx(
+      ()=>AuthController.userModel.value?.role==0? AddButton(onPressed: () {
+                  controller.navigatorKey.currentState?.pushNamed(Routes.addCategory);
+                },):const SizedBox(),
+              )
             ],
           );
     });

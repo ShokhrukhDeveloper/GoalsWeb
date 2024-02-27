@@ -75,11 +75,11 @@ class HomePage extends GetView<HomeController> {
                        page=const SizedBox();
                      }
                      return PageTransition(
-                         type: PageTransitionType.topToBottom,
-                         // duration: Duration(seconds: 1),
+                         type: PageTransitionType.fade,
+                         duration: const Duration(seconds: 1),
                          // childCurrent: CircularProgressIndicator(),
-                         alignment: Alignment.topCenter,
-                         curve: Curves.slowMiddle,
+                         // alignment: Alignment.topCenter,
+                         curve: Curves.linear,
                          child:Scaffold(
                          body:Align(
                            alignment: Alignment.topCenter,
