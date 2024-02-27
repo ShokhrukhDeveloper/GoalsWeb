@@ -79,6 +79,45 @@ class _$ApiClient extends ApiClient {
   }
 
   @override
+  Future<Response<dynamic>> createUser(Map<String, String> body) {
+    final Uri $url = Uri.parse('/Student');
+    final $body = body;
+    final Request $request = Request(
+      'POST',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> login(Map<String, String> body) {
+    final Uri $url = Uri.parse('/Auth');
+    final $body = body;
+    final Request $request = Request(
+      'POST',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> getAccountDetails(Map<String, String> body) {
+    final Uri $url = Uri.parse('/Auth');
+    final $body = body;
+    final Request $request = Request(
+      'POST',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<dynamic>> createSubject(
     int id,
     Map<String, String> body,

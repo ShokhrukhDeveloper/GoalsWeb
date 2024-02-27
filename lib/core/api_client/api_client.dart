@@ -34,6 +34,14 @@ abstract class ApiClient extends ChopperService {
   Future<Response> getSubjectDocuments(@Path("id") int id, @QueryMap() Map<String, int> query);
   @Post(path: "/Category")
   Future<Response> createCategory(@Body() Map<String, String> body);
+
+  @Post(path: "/Student")
+  Future<Response> createUser(@Body() Map<String, String> body);
+  @Post(path: "/Auth")
+  Future<Response> login(@Body() Map<String, String> body);
+
+  @Post(path: "/Auth")
+  Future<Response> getAccountDetails(@Body() Map<String, String> body);
   @Post(path: "/Category/{id}/Subjects")
   Future<Response> createSubject(@Path("id") int id, @Body() Map<String, String> body);
 

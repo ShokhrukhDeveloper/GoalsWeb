@@ -1,8 +1,11 @@
+import 'package:get/get.dart';
+import 'package:goals_web/controllers/auth_controller.dart';
+
 import '../../../_imports.dart';
 import '../../widgets/add_document_widget/custom_button.dart';
 import '../../widgets/add_document_widget/custom_text_field.dart';
 
-class SignInWidget extends StatelessWidget {
+class SignInWidget extends GetView<AuthController> {
   const SignInWidget({super.key});
 
   @override
@@ -12,11 +15,19 @@ class SignInWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Kirish",style: AppTextStyle.categoryTitleBlackTextStyle,),
-        CustomTextFieldWidget(hint: "Login",width: 300,),
+        CustomTextFieldWidget(
+          hint: "Login",
+          width: 300,
+          controller: controller.login,
+        ),
         SizedBox(height: 10,),
-        CustomTextFieldWidget(hint: "Parol",width: 300,),
-        SizedBox(height: 10,),
-        CustomButton(text: "Kirish", onPressed: (){}, width: 300,)
+        CustomTextFieldWidget(
+          hint: "Parol",
+          width: 300,
+          controller: controller.password,
+        ),
+        const SizedBox(height: 10,),
+        CustomButton(text: "Kirish", onPressed: controller.signIn, width: 300,)
       ],
     );
   }
