@@ -18,7 +18,7 @@ class _HomeMenuState extends State<HomeMenu> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
-      if (controller.isLoading) {
+      if (controller.isLoading.value) {
         return const Center(
           child: CircularProgressIndicator(),
         );

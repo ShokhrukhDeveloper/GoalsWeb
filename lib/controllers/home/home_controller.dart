@@ -1,4 +1,5 @@
 import 'package:chopper/chopper.dart';
+import 'package:goals_web/controllers/auth_controller.dart';
 import 'package:goals_web/core/data_models/category.dart';
 import 'package:goals_web/core/data_models/document_list.dart';
 import 'package:goals_web/core/data_models/language_list.dart';
@@ -22,7 +23,7 @@ class HomeController extends BaseController {
   DocumentList? documentsList;
   Future<void> getDocumentList(int id) async {
     selectedSubjectId.value=id;
-    setLoading(true);
+    setLoading(true.obs);
     var response = await apiClient.getSubjectDocuments(id, {});
     print(response.statusCode);
     print(response.error);
@@ -30,7 +31,7 @@ class HomeController extends BaseController {
     if (response.statusCode == 200) {
       documentsList = DocumentList.fromJson(response.body);
     }
-    setLoading(false);
+    setLoading(false.obs);
   }
 
 
@@ -39,7 +40,7 @@ class HomeController extends BaseController {
 
   ApiClient apiClient = ApiClient.getInstance;
   Future<void> getCategories() async {
-    setLoading(true);
+    setLoading(true.obs);
     var response = await apiClient.getCategoriesWithSubjects();
     print(response.statusCode);
     print(response.error);
@@ -48,10 +49,10 @@ class HomeController extends BaseController {
       category = Category.fromJson(response.body);
       print("parse success");
     }
-    setLoading(false);
+    setLoading(false.obs);
   }
   Future<void> getLanguages() async {
-    setLoading(true);
+    setLoading(true.obs);
     var response = await apiClient.getLanguages();
     debugPrint("${response.statusCode}");
     debugPrint("${response.error}");
@@ -60,10 +61,10 @@ class HomeController extends BaseController {
      languageList=LanguageList.fromJson(response.body);
      debugPrint("Language successfully ");
     }
-    setLoading(false);
+    setLoading(false.obs);
   }
   Future<void> createCategory(String name) async {
-    setLoading(true);
+    setLoading(true.obs);
     var response = await apiClient.createCategory({
       "name": name,
       "image": "string"
@@ -75,10 +76,10 @@ class HomeController extends BaseController {
      await getCategories();
      navigatorKey.currentState?.pop();
     }
-    setLoading(false);
+    setLoading(false.obs);
   }
   Future<void> createSubjectByCategoryId({required int categoryId,required String name}) async {
-    setLoading(true);
+    setLoading(true.obs);
     var response = await apiClient.createSubject(categoryId,{
       "name": name,
       "image": "*"
@@ -91,12 +92,15 @@ class HomeController extends BaseController {
       selectedSubjects.value=category?.categories.firstWhere((element) => element.id==selectedCategoryId.value).subjects??[];
       navigatorKey.currentState?.pop();
     }
-    setLoading(false);
+    setLoading(false.obs);
   }
   @override
   void onInit() {
+    AuthController()
+        .getAccountDetail();
     getCategories();
     getLanguages();
+
     super.onInit();
   }
 }

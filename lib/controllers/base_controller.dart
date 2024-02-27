@@ -2,12 +2,12 @@ import 'package:get/get.dart';
 export 'package:get/get.dart';
 
 abstract class BaseController extends GetxController {
-  bool _isLoading = false;
+  Rx<bool> _isLoading = false.obs;
 
-  void setLoading(bool value) {
+  void setLoading(Rx<bool> value) {
     _isLoading = value;
     update();
   }
 
-  bool get isLoading => _isLoading;
+  Rx<bool> get isLoading => _isLoading;
 }

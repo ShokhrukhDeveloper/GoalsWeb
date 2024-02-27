@@ -3,6 +3,7 @@ abstract class Routes {
 
   static const initial = '/';
   static const main = '/main';
+  static const accountInfo = '/accountInfo';
   static const sigIn = '/sigIn';
   static const subjectView = '/subjectView';
   static const subjectItemView = '/subjectItemView';

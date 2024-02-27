@@ -14,20 +14,20 @@ class SignInWidget extends GetView<AuthController> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Kirish",style: AppTextStyle.categoryTitleBlackTextStyle,),
+        const Text("Kirish",style: AppTextStyle.categoryTitleBlackTextStyle,),
         CustomTextFieldWidget(
-          hint: "Login",
+          hint: "Telefon raqami",
           width: 300,
           controller: controller.login,
         ),
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
         CustomTextFieldWidget(
           hint: "Parol",
           width: 300,
           controller: controller.password,
         ),
         const SizedBox(height: 10,),
-        CustomButton(text: "Kirish", onPressed: controller.signIn, width: 300,)
+        SizedBox(height:50,child: CustomButton(text: "Kirish", onPressed: controller.signIn, width: 300,))
       ],
     );
   }

@@ -17,7 +17,7 @@ class DocumentsListViewWidget extends GetView<HomeController> {
           borderRadius: BorderRadius.circular(15),
           border: Border.all(color: AppColors.black)),
       child: GetBuilder<HomeController>(builder: (ctr) {
-        return controller.isLoading
+        return controller.isLoading.value
             ? const Center(
                 child: CircularProgressIndicator(),
               )

@@ -1,9 +1,16 @@
 import 'package:get/get.dart';
+import 'package:goals_web/controllers/auth_controller.dart';
 
 import '../../../_imports.dart';
 
 class AccountInfoWidget extends GetView {
   const AccountInfoWidget({super.key});
+  String role(int? re)=> switch(re) {
+      0=>"SuperAdmin",
+      1=>"Admin",
+      3=>"Foydalanuvchi",
+      _=>"Foydalanuvchi"
+    };
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +22,7 @@ class AccountInfoWidget extends GetView {
         
           const Icon(Icons.person,size: 100,color: AppColors.blue,),
 
-          const Text("New User",style: AppTextStyle.homeMenuBlackTextStyle,),
+          Text("${AuthController.userModel.value?.fullName}",style: AppTextStyle.homeMenuBlackTextStyle,),
           Container(
             width: 200,
             padding: EdgeInsets.all(5),
@@ -27,13 +34,15 @@ class AccountInfoWidget extends GetView {
               children: [
                 Center(child: Text("Ma'lumot")),
                 Divider(),
-                Text("Jinsi: Erkak"),
+                Text("Balans: ${AuthController.userModel.value?.balanse}"),
                 SizedBox(height: 10,),
-                Text("Tel: +998997531097"),
+                Text("Role: ${role(AuthController.userModel.value?.role)}"),
                 SizedBox(height: 10,),
-                Text("Jinsi: Erkak"),
+                Text("Tel: ${AuthController.userModel.value?.phone}"),
                 SizedBox(height: 10,),
-                Text("Tel: +998997531097"),
+                Text("Email:  ${AuthController.userModel.value?.email??"(yo'q)"}"),
+                SizedBox(height: 10,),
+                Text("Yaratilgan: ${AuthController.userModel.value?.createdAt?.substring(0,10)}"),
               ],
             ),
           )

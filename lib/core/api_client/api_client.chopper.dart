@@ -105,14 +105,12 @@ class _$ApiClient extends ApiClient {
   }
 
   @override
-  Future<Response<dynamic>> getAccountDetails(Map<String, String> body) {
+  Future<Response<dynamic>> getAccountDetails() {
     final Uri $url = Uri.parse('/Auth');
-    final $body = body;
     final Request $request = Request(
-      'POST',
+      'GET',
       $url,
       client.baseUrl,
-      body: $body,
     );
     return client.send<dynamic, dynamic>($request);
   }
