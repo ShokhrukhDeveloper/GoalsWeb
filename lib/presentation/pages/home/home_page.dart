@@ -12,10 +12,28 @@ import '../../widgets/documents_list_view_widget/documents_list_view_widget.dart
 import '../../widgets/home_menu_widget/home_menu_widget.dart';
 import '../../widgets/last_added_document/last_added_document_widget.dart';
 import '../../widgets/subject_list_view_widget/subject_view_widget.dart';
-
+import 'dart:ui' as ui;
 class HomePage extends GetView<HomeController> {
   HomePage({super.key});
+  final maxWebAppRatio = 4.8 / 6.0;
+  final minWebAppRatio = 9.0 / 16.0;
   final navigatorKey = GlobalKey<NavigatorState>();
+  double getCurrentWebAppRatio() {
+    double currentWebAppRatio = minWebAppRatio;
+
+    // Fixed ratio for Web
+    var physicalScreenSize = ui.window.physicalSize;
+    var physicalWidth = physicalScreenSize.width;
+    var physicalHeight = physicalScreenSize.height;
+
+    currentWebAppRatio = physicalWidth / physicalHeight;
+    if (currentWebAppRatio > maxWebAppRatio) {
+      currentWebAppRatio = maxWebAppRatio;
+    } else if (currentWebAppRatio < minWebAppRatio) {
+      currentWebAppRatio = minWebAppRatio;
+    }
+    return currentWebAppRatio;
+  }
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctr) {
