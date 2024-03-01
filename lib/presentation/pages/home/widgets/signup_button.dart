@@ -9,39 +9,42 @@ class SignUpButton extends GetView {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 20),
-      padding: const EdgeInsets.only(right: 15),
+      // padding: const EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: AppColors.black.withOpacity(0.1),
           border: Border.all(color: AppColors.black.withOpacity(0.5))),
       height: 50,
       child: Obx(
-        () => Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  if( AuthController.userModel.value != null) {
-                    Get.toNamed(Routes.accountInfo);
-                  }else{
-                    Get.toNamed(Routes.sigIn);
-                  }
-
-                },
-                icon: const Icon(
-                  Icons.account_circle_outlined,
-                  size: 36,
-                  color: AppColors.black,
-                )),
-            AuthController.userModel.value == null
-                ? const Text(
-                    "Kirish",
-                    style: AppTextStyle.categoryMenuBlackTextStyle,
-                  )
-                : Text(
-                    "${AuthController.userModel.value?.fullName}",
-                    style: AppTextStyle.categoryMenuBlackTextStyle,
-                  ),
-          ],
+        () => InkWell(
+          onTap: () {
+            if( AuthController.userModel.value != null) {
+              Get.toNamed(Routes.accountInfo);
+            }else{
+              Get.toNamed(Routes.sigIn);
+            }
+          },
+          child: Row(
+            children: [
+              IconButton(
+                style: ButtonStyle(padding:MaterialStatePropertyAll( EdgeInsets.zero)),
+                  onPressed: null,
+                  icon: const Icon(
+                    Icons.account_circle_outlined,
+                    size: 36,
+                    color: AppColors.black,
+                  )),
+              AuthController.userModel.value == null
+                  ? const Text(
+                      "Kirish",
+                      style: AppTextStyle.categoryMenuBlackTextStyle,
+                    )
+                  : Text(
+                      "${AuthController.userModel.value?.fullName}",
+                      style: AppTextStyle.categoryMenuBlackTextStyle,
+                    ),
+            ],
+          ),
         ),
       ),
     );

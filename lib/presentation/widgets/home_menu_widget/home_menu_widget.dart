@@ -19,38 +19,63 @@ class _HomeMenuState extends State<HomeMenu> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
-      if (controller.isLoading.value) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      return  Column(
-            children: [
-             if(controller.category!=null && controller.category!.categories.isNotEmpty) Obx(() => Column(
-                children: controller.category?.categories
-                    .map<Widget>((e) => HomeMenuItemWidget(
-                  isSelected:
-                  controller.selectedCategoryId.value == e.id,
-                  onTap: () {
-                    controller.selectedSubjects.value = e.subjects;
-                    controller.selectedCategory=e;
-                    controller.selectedCategoryId.value = e.id;
-                    controller.navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.subjectView,(t)=>true);
-                    controller.update();
-                  },
-                  title: e.name,
-                ))
-                    .toList()??[],
-              ))
-              ,
-              const SizedBox(height: 10,),
-              Obx(
-      ()=>AuthController.userModel.value?.role==0? AddButton(onPressed: () {
-                  controller.navigatorKey.currentState?.pushNamed(Routes.addCategory);
-                },):const SizedBox(),
-              )
-            ],
-          );
+      // if (controller.isLoading.value) {
+      //   return const Center(
+      //     child: CircularProgressIndicator(),
+      //   );
+      // }
+      return Column(
+        children: [
+          Container(
+            // width: double.infinity,
+
+            decoration: BoxDecoration(
+                color: Colors.white10, border: Border.all(color: Colors.black)),
+            child: const Padding(
+              padding: EdgeInsets.all(30.0),
+              child: FlutterLogo(
+                size: 60,
+              ),
+            ),
+          ),
+          if (controller.category != null &&
+              controller.category!.categories.isNotEmpty)
+            Obx(() => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+                  children: controller.category?.categories
+                          .map<Widget>((e) => HomeMenuItemWidget(
+                                isSelected:
+                                    controller.selectedCategoryId.value == e.id,
+                                onTap: () {
+                                  controller.selectedSubjects.value =
+                                      e.subjects;
+                                  controller.selectedCategory = e;
+                                  controller.selectedCategoryId.value = e.id;
+                                  controller.navigatorKey.currentState
+                                      ?.pushNamedAndRemoveUntil(
+                                          Routes.subjectView, (t) => true);
+                                  controller.update();
+                                },
+                                title: e.name,
+                              ))
+                          .toList() ??
+                      [],
+                )),
+          const SizedBox(
+            height: 10,
+          ),
+          Obx(
+            () => AuthController.userModel.value?.role == 0
+                ? AddButton(
+                    onPressed: () {
+                      controller.navigatorKey.currentState
+                          ?.pushNamed(Routes.addCategory);
+                    },
+                  )
+                : const SizedBox(),
+          )
+        ],
+      );
     });
   }
 }

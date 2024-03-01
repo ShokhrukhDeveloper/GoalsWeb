@@ -15,9 +15,10 @@ class LastAddedListViewWidget extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: AppColors.black)),
+      // decoration: BoxDecoration(
+      //     // borderRadius: BorderRadius.circular(15),
+      //     // border: Border.all(color: AppColors.black)
+      // ),
       child:
       FutureBuilder<LastAddedModel?>(
         future: controller.getLasts(),
@@ -33,25 +34,23 @@ class LastAddedListViewWidget extends GetView<HomeController> {
               children: [
                 const Padding(
                   padding: EdgeInsets.symmetric(
-                      vertical: 20, horizontal: 25),
+                      vertical: 10, horizontal: 25),
                   child: Align(
                     alignment: Alignment.centerLeft,
                       child: Text(
                         "So'nngi qo'shilganlar",
-                        maxLines: 2,
+
                         style: AppTextStyle.categoryTitleBlackTextStyle,
                       )),
                 ),
                 const Divider(),
                 ...?snap.data?.document.map((e) => LastAddedItemWidget(
                     onTap: () {
-                      // controller.selectedSubject=e;
-                      // controller.navigatorKey.currentState
-                      //     ?.pushNamed(Routes.subjectItemView,
-                      //     arguments: e.id);
-                      // controller.getDocumentList(e.id);
+                      controller.navigatorKey.currentState?.pushNamed(
+                          Routes.documentView,
+                          arguments: e.id);
                     },
-                    title: "${e.name}",
+                    title: e.name,
                     downloads: "")),
                 const Divider(),
                 // PagenationControlWidget()

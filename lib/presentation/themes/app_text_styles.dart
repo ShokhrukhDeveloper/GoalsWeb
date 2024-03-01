@@ -6,16 +6,16 @@ class AppTextStyle
   static const TextStyle entranceTextStyle=TextStyle(
       fontWeight: FontWeight.w400);
   static const TextStyle homeMenuWhiteTextStyle=TextStyle(
-      fontSize: 18,
+      fontSize: 20,
       color: AppColors.white,
       fontWeight: FontWeight.w400);
   static const TextStyle categoryTitleBlackTextStyle=TextStyle(
-      fontSize: 22,
+      fontSize: 30,
       color: AppColors.black,
-      fontWeight: FontWeight.bold);
+      fontWeight: FontWeight.w300);
   static const TextStyle homeMenuBlackTextStyle=TextStyle(
-      fontSize: 18,
-      color: AppColors.black,
+      fontSize: 20,
+      color: Colors.white54,
       fontWeight: FontWeight.w400);
   static const TextStyle categoryMenuWhiteTextStyle=TextStyle(
       fontSize: 16,

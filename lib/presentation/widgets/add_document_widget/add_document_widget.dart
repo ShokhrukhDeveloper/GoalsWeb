@@ -118,12 +118,21 @@ class _AddDocumentWidgetState extends State<AddDocumentWidget> {
             : SingleChildScrollView(
                 child: Column(
                   children: [
-                    const Center(
-                        child: Text(
-                      "Hujjat qo'shish",
-                      maxLines: 2,
-                      style: AppTextStyle.categoryTitleBlackTextStyle,
-                    )),
+                    Row(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              ctr.navigatorKey.currentState?.pop();
+                            },
+                            icon: const Icon(Icons.arrow_back)),
+                        const Center(
+                            child: Text(
+                          "Hujjat qo'shish",
+                          maxLines: 2,
+                          style: AppTextStyle.categoryTitleBlackTextStyle,
+                        )),
+                      ],
+                    ),
                     const Divider(),
                     InkWell(
                       onTap: _pickFile,

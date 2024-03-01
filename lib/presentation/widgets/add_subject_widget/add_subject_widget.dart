@@ -22,12 +22,22 @@ class AddSubjectWidget extends GetView<HomeController> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Center(
-                child: Text(
-                  "Fan qo'shish",
-                  maxLines: 2,
-                  style: AppTextStyle.categoryTitleBlackTextStyle,
-                )),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      controller.navigatorKey.currentState?.pop();
+                    },
+                    icon: const Icon(Icons.arrow_back)),
+                const Align(
+                  alignment: Alignment.topCenter,
+                    child: Text(
+                      "Fan qo'shish",
+                      maxLines: 2,
+                      style: AppTextStyle.categoryTitleBlackTextStyle,
+                    )),
+              ],
+            ),
             const Divider(),
             CustomTextFieldWidget(
               title: 'Fan nomi',

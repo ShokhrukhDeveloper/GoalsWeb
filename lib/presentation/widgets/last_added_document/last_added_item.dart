@@ -12,11 +12,11 @@ class LastAddedItemWidget extends GetView {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 0),
-        height: 60,
+        // margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+        height: 80,
         width: double.infinity,
         decoration: BoxDecoration(
-            // borderRadius: BorderRadius.circular(10),
+          // borderRadius: BorderRadius.circular(10),
             border: Border.symmetric(
               horizontal: BorderSide(color: AppColors.black.withOpacity(0.3)),
               vertical: BorderSide(color: AppColors.black.withOpacity(0.3),
@@ -28,17 +28,18 @@ class LastAddedItemWidget extends GetView {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              margin: const EdgeInsets.all(5),
-              width: 50,
-              height: 50,
-
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(color: AppColors.black.withOpacity(0.3))
-              ),
-              child: const Center(child: Icon(Icons.subject,size: 50,),),
-            ),
+            SizedBox(width: 15,),
+            // Container(
+            //   margin: const EdgeInsets.all(5),
+            //   width: 50,
+            //   height: 50,
+            //
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(50),
+            //       border: Border.all(color: AppColors.black.withOpacity(0.3))
+            //   ),
+            //   child: const Center(child: Icon(Icons.subject,size: 50,),),
+            // ),
             Flexible(
               child: Align(
                 alignment: Alignment.centerLeft,
@@ -49,15 +50,15 @@ class LastAddedItemWidget extends GetView {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  // const Icon(Icons.download_done_sharp,size: 30,),
-                  Text(downloads,style: AppTextStyle.categoryMenuBlackTextStyle,)
-                ],
-              ),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Row(
+            //     children: [
+            //       // const Icon(Icons.download_done_sharp,size: 30,),
+            //       Text(downloads,style: AppTextStyle.categoryMenuBlackTextStyle,)
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),

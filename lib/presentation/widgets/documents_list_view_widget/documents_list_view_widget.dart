@@ -15,8 +15,9 @@ class DocumentsListViewWidget extends GetView<HomeController> {
     return Container(
       margin: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: AppColors.black)),
+          // borderRadius: BorderRadius.circular(15),
+          // border: Border.all(color: AppColors.black)
+      ),
       child: GetBuilder<HomeController>(builder: (ctr) {
         return controller.isLoading.value
             ? const Center(

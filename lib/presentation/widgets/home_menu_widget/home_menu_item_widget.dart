@@ -14,14 +14,15 @@ class HomeMenuItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding:EdgeInsets.only(left: 15) ,
       height: 50,
-      width: 200,
       decoration: BoxDecoration(
-          color: !isSelected ? AppColors.white : AppColors.red,
+          color: !isSelected ? Colors.black.withOpacity(0.3) : Colors.white54,
           border: const Border(bottom: BorderSide(color: AppColors.black))),
       child: InkWell(
           onTap: onTap,
-          child: Center(
+          child: Align(
+            alignment: Alignment.centerLeft,
             child: Text(
               title,
               maxLines: 2,

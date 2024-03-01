@@ -14,25 +14,28 @@ import '../../widgets/last_added_document/last_added_document_widget.dart';
 import '../../widgets/subject_list_view_widget/subject_view_widget.dart';
 
 class HomePage extends GetView<HomeController> {
-   HomePage({super.key});
-   final navigatorKey = GlobalKey<NavigatorState>();
-   @override
+  HomePage({super.key});
+  final navigatorKey = GlobalKey<NavigatorState>();
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctr) {
-      ctr.navigatorKey=navigatorKey;
+      ctr.navigatorKey = navigatorKey;
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.lightBlueAccent,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.0),
+          child: AppBar(
+            backgroundColor: Colors.black54,
+            leading: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.menu),
+            ),
+            actions: const [SignUpButton()],
           ),
-          actions: const [SignUpButton()],
         ),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage("assets/bg.jpg"),
+              image: AssetImage("assets/bg.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -42,77 +45,64 @@ class HomePage extends GetView<HomeController> {
             children: [
               Container(
                 height: double.infinity,
-                decoration:
-                BoxDecoration(
-                    color: Colors.white.withOpacity(0.7),
+                decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.7),
                     border: Border.all(color: AppColors.black)),
-                width: 200,
+                width: 300,
                 child: const SingleChildScrollView(child: HomeMenu()),
               ),
               Expanded(
-                child: Navigator(
-
-                     key: navigatorKey,
-                     initialRoute: Routes.sigIn,
-                     onGenerateRoute: (setting ) {
-                       late Widget page ;
-                       if(setting.name==Routes.documentView)
-                       {
-                         int? id = setting.arguments as int;
-                         page = DocumentViewerWidget(id);
-                       } else
-                         if(setting.name==Routes.addDocument)
-                       {
-                         int id = setting.arguments as int;
-                         page =  AddDocumentWidget(subjectId: id);
-                       } else if(setting.name==Routes.addCategory)
-                       {
-                         page = AddCategoryWidget();
-                       }
-                       else if(setting.name==Routes.addSubject){
-                           int? id = setting.arguments as int;
-                           page = AddSubjectWidget(categoryId: id);
-                         }
-                       else if(setting.name==Routes.subjectView){
-                           // int? id =  setting.arguments as int;
-                           page =  const SubjectListViewWidget();
-                         }
-                       else if(setting.name==Routes.subjectItemView){
-                           int? id =  setting.arguments as int;
-                           page =  DocumentsListViewWidget(id);
-                         }
-                       else{
-                         page = const LastAddedListViewWidget();
-                       }
-                       return PageTransition(
-                           type: PageTransitionType.fade,
-                           duration: const Duration(seconds: 1),
-                           // childCurrent: CircularProgressIndicator(),
-                           // alignment: Alignment.topCenter,
-                           curve: Curves.linear,
-                           child:Scaffold(
-                             backgroundColor: Colors.transparent,
-                           body:Align(
-                             alignment: Alignment.topCenter,
-                             child:  LayoutBuilder(
-                                       builder: (context, constraints) {
-                                     if (constraints.maxWidth > 900) {
-                                       // Wide screen layout
-                                       return Container(
-                                         height: MediaQuery.of(context).size.height,
-                                         color: Colors.white,
-                                         width: 900,
-                                         child: page,
-                                       );
-                                     } else {
-                                       // Regular screen layout
-                                       return page;
-                                     }
-                                   }),
-                             ),
-                           ));
-                     })
-              ),
+                  child: Navigator(
+                      key: navigatorKey,
+                      initialRoute: Routes.sigIn,
+                      onGenerateRoute: (setting) {
+                        late Widget page;
+                        if (setting.name == Routes.documentView) {
+                          int? id = setting.arguments as int;
+                          page = DocumentViewerWidget(id);
+                        } else if (setting.name == Routes.addDocument) {
+                          int id = setting.arguments as int;
+                          page = AddDocumentWidget(subjectId: id);
+                        } else if (setting.name == Routes.addCategory) {
+                          page = AddCategoryWidget();
+                        } else if (setting.name == Routes.addSubject) {
+                          int? id = setting.arguments as int;
+                          page = AddSubjectWidget(categoryId: id);
+                        } else if (setting.name == Routes.subjectView) {
+                          // int? id =  setting.arguments as int;
+                          page = const SubjectListViewWidget();
+                        } else if (setting.name == Routes.subjectItemView) {
+                          int? id = setting.arguments as int;
+                          page = DocumentsListViewWidget(id);
+                        } else {
+                          page = const LastAddedListViewWidget();
+                        }
+                        return PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: const Duration(milliseconds: 200),
+                            curve: Curves.linear,
+                            child: Scaffold(
+                              backgroundColor: Colors.transparent,
+                              body: Align(
+                                alignment: Alignment.topCenter,
+                                child: LayoutBuilder(
+                                    builder: (context, constraints) {
+                                  if (constraints.maxWidth > 900) {
+                                    return Container(
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      color: Colors.white,
+                                      width: 900,
+                                      child: page,
+                                    );
+                                  } else {
+                                    // Regular screen layout
+                                    return page;
+                                  }
+                                }),
+                              ),
+                            ));
+                      })),
             ],
           ),
         ),

@@ -13,9 +13,9 @@ class SubjectListViewWidget extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: AppColors.black)),
+      // decoration: BoxDecoration(
+      //     borderRadius: BorderRadius.circular(15),
+      //     border: Border.all(color: AppColors.black)),
       child: GetBuilder<HomeController>(builder: (ctr) {
         return controller.isLoading.value
             ? const Center(
@@ -26,7 +26,7 @@ class SubjectListViewWidget extends GetView<HomeController> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
+                              vertical: 0, horizontal: 10),
                           child: Row(
                             children: [
                               Expanded(
@@ -34,19 +34,19 @@ class SubjectListViewWidget extends GetView<HomeController> {
                                       child: Text(
                                 controller.selectedCategory?.name ?? "!",
                                 maxLines: 2,
-                                style: AppTextStyle.categoryTitleBlackTextStyle,
+                                style: AppTextStyle.categoryTitleBlackTextStyle.copyWith(fontSize: 30),
                               ))),
                               const Expanded(child: SearchTextWidget()),
-        Obx(
-        ()=>AuthController.userModel.value?.role==0?
-        AddButton(onPressed: () async {
-                                await controller.navigatorKey.currentState
-                                    ?.pushNamed(Routes.addSubject,
-                                        arguments:
-                                            controller.selectedCategory?.id);
-
-                              }):
-        const SizedBox())
+                              Obx(() =>
+                                  AuthController.userModel.value?.role == 0
+                                      ? AddButton(onPressed: () async {
+                                          await controller
+                                              .navigatorKey.currentState
+                                              ?.pushNamed(Routes.addSubject,
+                                                  arguments: controller
+                                                      .selectedCategory?.id);
+                                        })
+                                      : const SizedBox())
                             ],
                           ),
                         ),
@@ -54,7 +54,7 @@ class SubjectListViewWidget extends GetView<HomeController> {
                         ...controller.selectedSubjects
                             .map<Widget>((e) => SubjectViewItemWidget(
                                 onTap: () {
-                                  controller.selectedSubject=e;
+                                  controller.selectedSubject = e;
                                   controller.navigatorKey.currentState
                                       ?.pushNamed(Routes.subjectItemView,
                                           arguments: e.id);

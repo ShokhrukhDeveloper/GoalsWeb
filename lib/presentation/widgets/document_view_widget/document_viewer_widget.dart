@@ -48,10 +48,11 @@ class _DocumentViewerWidgetState extends State<DocumentViewerWidget> {
     return Container(
       height: MediaQuery.of(context).size.height,
       margin: const EdgeInsets.all(15),
-      padding: const EdgeInsets.all(15),
+      // padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: AppColors.black)),
+          // borderRadius: BorderRadius.circular(15),
+          // border: Border.all(color: AppColors.black)
+      ),
       child: Column(
         children: [
           Row(
